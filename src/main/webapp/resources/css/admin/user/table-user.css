@@ -1,0 +1,131 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Common */
+
+.container {
+    width: 1170px;
+    max-width: calc(100%-48px);
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Main  */
+
+.row {
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.row__header {
+    color: #000;
+    font-size: 3.5rem;
+    font-weight: 500;
+}
+
+.row__btn-create-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.7rem;
+    background: dodgerblue;
+    padding: 15px 15px;
+    border-radius: 10px;
+}
+
+.line {
+    border-top: 1px solid #c1c1c1;
+    margin: 20px 0;
+}
+
+.table {
+    width: 100%;
+}
+
+table,
+td,
+th {
+    border: 2px solid rgb(0, 0, 0, 0.15);
+}
+
+th,
+td:first-child {
+    font-weight: 800;
+}
+
+thead tr {
+    text-align: left;
+}
+
+tr:hover {
+    background-color: #f0f0f0; /* Tô màu nền cho rõ hơn */
+}
+
+td,
+th {
+    width: 150px;
+    height: 45px;
+    padding: 4px 8px;
+}
+
+th:first-child,
+td:first-child {
+    width: 10%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    width: 20%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+    width: 30%;
+}
+
+th:last-child,
+td:last-child {
+    width: 50%;
+}
+
+.table__group-btn {
+    display: flex;
+    gap: 10px;
+}
+
+.table__btn-view {
+    color: #fff;
+    padding: 10px 15px;
+    background-color: green;
+    border-radius: 10px;
+}
+.table__btn-update {
+    color: #fff;
+    padding: 10px 15px;
+    background-color: darkorange;
+    border-radius: 10px;
+}
+
+.table__btn-delete {
+    color: #fff;
+    padding: 10px 15px;
+    background: red;
+    border-radius: 10px;
+}

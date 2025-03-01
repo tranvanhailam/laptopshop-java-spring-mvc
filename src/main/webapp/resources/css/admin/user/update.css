@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Common */
+
+.container {
+    width: 700px;
+    max-width: calc(100%-48px);
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.header {
+    margin-top: 70px;
+    color: #000;
+    font-size: 3.5rem;
+    font-weight: 500;
+}
+
+.line {
+    border-top: 1px solid #c1c1c1;
+    margin: 20px 0;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.field:first-child {
+    display: none;
+}
+
+.field:nth-child(2) .field__input {
+    pointer-events: none;
+    background-color: #f0f0f0; /* Đổi màu nền để hiển thị rõ */
+}
+
+.field__label {
+    margin-bottom: 8px;
+}
+
+.field__input {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1.6rem;
+    border: 1px solid #ccc; /* Viền xám nhạt */
+    border-radius: 5px; /* Bo góc nhẹ */
+    outline: none;
+}
+
+.field__input:focus {
+    border-color: #86b7fe; /* Màu viền xanh khi focus */
+    box-shadow: 0 0 5px rgba(13, 110, 253, 0.25);
+}
+
+.btn-submit {
+    font-size: 1.6rem;
+    color: #fff;
+    padding: 10px 15px;
+    background-color: darkorange;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+/* PC */
+@media screen and (min-width: 992px) {
+}
+
+/* Tablet, Mobile  */
+@media screen and (max-width: 991.8px) {
+}
+
+/* Tablet */
+@media screen and(min-width: 768px) and (max-width: 991.98px) {
+}
+
+/* Mobile  */
+@media screen and (max-width: 767.98px) {
+}

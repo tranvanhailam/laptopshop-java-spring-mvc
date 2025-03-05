@@ -21,7 +21,7 @@ uri="http://www.springframework.org/tags/form" %>
                 //Trang web đã load
                 const avatarFile = $("#avatarFile"); //Lấy elm có id avatarFile
                 avatarFile.change(function (e) {
-                    const imgURL = URL.createObjectURL(e.target.files[0]);//Link URL hiển thị ảnh
+                    const imgURL = URL.createObjectURL(e.target.files[0]); //Link URL hiển thị ảnh
                     $("#avatarPreview").attr("src", imgURL);
                     $("#avatarPreview").css({ display: "block" });
                 });
@@ -58,6 +58,7 @@ uri="http://www.springframework.org/tags/form" %>
                                         action="/admin/user/create"
                                         modelAttribute="newUser"
                                         class="row"
+                                        enctype="multipart/form-data"
                                     >
                                         <div class="mb-3 col-12 col-md-6">
                                             <label class="form-label"
@@ -114,27 +115,32 @@ uri="http://www.springframework.org/tags/form" %>
                                             <label class="form-label"
                                                 >Role:</label
                                             >
-                                            <select class="form-select">
-                                                <option value="ADMIN">
+                                            <form:select
+                                                class="form-select"
+                                                path="role.name"
+                                            >
+                                                <form:option value="ADMIN">
                                                     ADMIN
-                                                </option>
-                                                <option value="USER">
+                                                </form:option>
+                                                <form:option value="USER">
                                                     USER
-                                                </option>
-                                            </select>
+                                                </form:option>
+                                            </form:select>
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label
                                                 for="avatarFile"
                                                 class="form-label"
-                                                >Avatar:</label
                                             >
+                                                Avatar:
+                                            </label>
                                             <input
                                                 class="form-control"
                                                 type="file"
                                                 id="avatarFile"
                                                 accept=".png, .jpg, .jpeg"
-                                            />
+                                                name="avatarFile"
+                                                />
                                         </div>
                                         <div class="col-12 mb-3">
                                             <img

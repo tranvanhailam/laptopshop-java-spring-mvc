@@ -1,5 +1,9 @@
 package vn.hoidanit.laptopshop.controller.admin;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -8,17 +12,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.servlet.ServletContext;
 import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.service.UploadService;
 import vn.hoidanit.laptopshop.service.UserService;
 
 @Controller
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
+    private final UploadService uploadService;
 
-    public UserController(UserService userService) {// Tạo DI
+    public UserController(UserService userService, UploadService uploadService) {// Tạo DI
         this.userService = userService;
+        this.uploadService = uploadService;
     }
 
     // Index
@@ -90,10 +100,11 @@ public class UserController {
 
     // After Create User
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String getTableUserPageAfterCreate(Model model, @ModelAttribute("newUser") User user) {
-        this.userService.handleSaveUser(user);
-        return "redirect:/admin/user"; // Map to method @RequestMapping(value = "/admin/user", method =
-                                       // RequestMethod.GET)
+    public String getTableUserPageAfterCreate(Model model, @ModelAttribute("newUser") User user,
+            @RequestParam("avatarFile") MultipartFile avatarFile) {
+        String avatarName = this.uploadService.handleSaveUploadFile(avatarFile, "avatar");// Save file
+        // this.userService.handleSaveUser(user);
+        return "redirect:/admin/user";
     }
 
 }

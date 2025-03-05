@@ -32,8 +32,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/resources/css/");
+        // Config mỗi khi thấy link /css/** tìm bên trong /resources/css/
+        // **: Đại diện cho các thư mục, file bên trong
         registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
-    }// Config mỗi khi thấy link /css/** tìm bên trong /resources/css/
-     // **: Đại diện cho các thư mục, file bên trong
-
+        registry.addResourceHandler("/images/**").addResourceLocations("/resources/images/");
+    }
 }

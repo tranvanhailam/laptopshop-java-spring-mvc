@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.servlet.ServletContext;
 import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.service.RoleService;
 import vn.hoidanit.laptopshop.service.UploadService;
 import vn.hoidanit.laptopshop.service.UserService;
 
@@ -25,10 +27,16 @@ public class UserController {
 
     private final UserService userService;
     private final UploadService uploadService;
+    private final RoleService roleService;
+    private final PasswordEncoder passwordEncoder;// interface trong Spring Security, thường được sử dụng để mã hóa
+                                                  // (encode) hoặc xác minh (verify) mật khẩu.
 
-    public UserController(UserService userService, UploadService uploadService) {// Tạo DI
+    public UserController(UserService userService, UploadService uploadService,
+            PasswordEncoder passwordEncoder, RoleService roleService) {// Tạo DI
         this.userService = userService;
         this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
+        this.roleService = roleService;
     }
 
     // Index
@@ -102,8 +110,12 @@ public class UserController {
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String getTableUserPageAfterCreate(Model model, @ModelAttribute("newUser") User user,
             @RequestParam("avatarFile") MultipartFile avatarFile) {
-        String avatarName = this.uploadService.handleSaveUploadFile(avatarFile, "avatar");// Save file
-        // this.userService.handleSaveUser(user);
+        String avatarFileName = this.uploadService.handleSaveUploadFile(avatarFile, "avatar");// Save file
+        String hashPassword = this.passwordEncoder.encode(user.getPassword());// hash password
+        user.setAvartar(avatarFileName);
+        user.setPassword(hashPassword);
+        user.setRole(this.roleService.getRoleByName(user.getRole().getName()));
+        this.userService.handleSaveUser(user);
         return "redirect:/admin/user";
     }
 

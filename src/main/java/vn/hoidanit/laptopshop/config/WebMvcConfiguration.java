@@ -36,5 +36,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         // **: Đại diện cho các thư mục, file bên trong
         registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
         registry.addResourceHandler("/images/**").addResourceLocations("/resources/images/");
+        registry.addResourceHandler("/client/**").addResourceLocations("/resources/client/");
+
     }
 }

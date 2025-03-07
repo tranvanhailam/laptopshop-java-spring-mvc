@@ -56,6 +56,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                                 <th>ID</th>
                                                 <th>Email</th>
                                                 <th>Full Name</th>
+                                                <th>Role</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -68,22 +69,27 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                                     <th>${user.id}</th>
                                                     <td>${user.email}</td>
                                                     <td>${user.fullName}</td>
+                                                    <td>${user.role.name}</td>
+                                                    <a href=""></a>
                                                     <td>
-                                                        <button
+                                                        <a
+                                                            href="/admin/user/detail/${user.id}"
                                                             class="btn btn-success"
                                                         >
                                                             View
-                                                        </button>
-                                                        <button
+                                                        </a>
+                                                        <a
+                                                            href="/admin/user/update/${user.id}"
                                                             class="btn btn-warning mx-2"
                                                         >
                                                             Update
-                                                        </button>
-                                                        <button
+                                                        </a>
+                                                        <a
+                                                            href="admin/user/delete/${user.id}"
                                                             class="btn btn-danger"
                                                         >
                                                             Delete
-                                                        </button>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             </c:forEach>

@@ -1,12 +1,7 @@
 package vn.hoidanit.laptopshop.controller.admin;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,12 +35,12 @@ public class UserController {
     }
 
     // Index
-    @RequestMapping("/")
-    public String getHomePage(Model model) {
-        List<User> userList = this.userService.getAllUsersByEmail("hailamtranvan@gmail.com");
-        model.addAttribute("userList", userList);// Thêm thuộc tính
-        return "index";
-    }
+    // @RequestMapping("/")
+    // public String getHomePage(Model model) {
+    //     List<User> userList = this.userService.getAllUsersByEmail("hailamtranvan@gmail.com");
+    //     model.addAttribute("userList", userList);// Thêm thuộc tính
+    //     return "index";
+    // }
 
     // Table User
     @RequestMapping(value = "/admin/user", method = RequestMethod.GET)
@@ -56,7 +51,7 @@ public class UserController {
     }
 
     // Detail User
-    @RequestMapping(value = "/admin/user/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/user/detail/{id}", method = RequestMethod.GET)
     public String getUserDetailPage(Model model, @PathVariable long id) {
         User user = this.userService.getUserById(id);
         model.addAttribute("user", user);

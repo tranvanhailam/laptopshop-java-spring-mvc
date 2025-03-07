@@ -40,7 +40,7 @@ uri="http://www.springframework.org/tags/form" %>
                                 <div class="col-12 mx-auto">
                                     <div class="d-flex justify-content-between">
                                         <h3>
-                                            User detail with id = ${user.id}
+                                            User detail with id: ${user.id}
                                         </h3>
                                     </div>
 

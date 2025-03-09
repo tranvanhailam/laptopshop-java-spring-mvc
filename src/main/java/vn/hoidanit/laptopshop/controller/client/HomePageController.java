@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomePageController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String grtHomePage(Model model) {
+    public String getHomePage(Model model) {
         return "client/homepage/show";
     }
 

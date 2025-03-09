@@ -6,11 +6,11 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
     <div class="container py-5">
         <div class="row g-5 align-items-center">
             <div class="col-md-12 col-lg-7">
-                <h4 class="mb-3 text-secondary">100% Organic Foods</h4>
+                <h4 class="mb-3 text-secondary">100% Sản phẩm chính hãng</h4>
                 <h1 class="mb-5 display-3 text-primary">
-                    Organic Veggies & Fruits Foods
+                    Hàng cao cấp rẻ vô địch
                 </h1>
-                <div class="position-relative mx-auto">
+                <!-- <div class="position-relative mx-auto">
                     <input
                         class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill"
                         type="number"
@@ -21,9 +21,9 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                         class="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100"
                         style="top: 0; right: 25%"
                     >
-                        Submit Now
+                        Gửi ngay
                     </button>
-                </div>
+                </div> -->
             </div>
             <div class="col-md-12 col-lg-5">
                 <div
@@ -39,7 +39,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                 alt="First slide"
                             />
                             <a href="#" class="btn px-4 py-2 text-white rounded"
-                                >Fruites</a
+                                >Asus</a
                             >
                         </div>
                         <div class="carousel-item rounded">
@@ -49,7 +49,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                 alt="Second slide"
                             />
                             <a href="#" class="btn px-4 py-2 text-white rounded"
-                                >Vesitables</a
+                                >Dell</a
                             >
                         </div>
                     </div>

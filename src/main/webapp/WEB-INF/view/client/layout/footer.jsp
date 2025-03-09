@@ -11,8 +11,8 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
             <div class="row g-4">
                 <div class="col-lg-3">
                     <a href="#">
-                        <h1 class="text-primary mb-0">Fruitables</h1>
-                        <p class="text-secondary mb-0">Fresh products</p>
+                        <h1 class="text-primary mb-0">Laptopshop</h1>
+                        <p class="text-secondary mb-0">Tran Van Hai Lam</p>
                     </a>
                 </div>
                 <div class="col-lg-6">
@@ -20,14 +20,14 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                         <input
                             class="form-control border-0 w-100 py-3 px-4 rounded-pill"
                             type="number"
-                            placeholder="Your Email"
+                            placeholder="Email của bạn"
                         />
                         <button
                             type="submit"
                             class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white"
                             style="top: 0; right: 0"
                         >
-                            Subscribe Now
+                            Đăng ký ngay
                         </button>
                     </div>
                 </div>
@@ -60,7 +60,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
                 <div class="footer-item">
-                    <h4 class="text-light mb-3">Why People Like us!</h4>
+                    <h4 class="text-light mb-3">Tại sao mọi người thích chúng tôi!</h4>
                     <p class="mb-4">
                         typesetting, remaining essentially unchanged. It was
                         popularised in the 1960s with the like Aldus PageMaker
@@ -69,39 +69,39 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                     <a
                         href=""
                         class="btn border-secondary py-2 px-4 rounded-pill text-primary"
-                        >Read More</a
+                        >Đọc thêm</a
                     >
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="d-flex flex-column text-start footer-item">
-                    <h4 class="text-light mb-3">Shop Info</h4>
-                    <a class="btn-link" href="">About Us</a>
-                    <a class="btn-link" href="">Contact Us</a>
-                    <a class="btn-link" href="">Privacy Policy</a>
-                    <a class="btn-link" href="">Terms & Condition</a>
-                    <a class="btn-link" href="">Return Policy</a>
-                    <a class="btn-link" href="">FAQs & Help</a>
+                    <h4 class="text-light mb-3">Thông tin cửa hàng</h4>
+                    <a class="btn-link" href="">Về chúng tôi</a>
+                    <a class="btn-link" href="">Liên hệ với chúng tôi</a>
+                    <a class="btn-link" href="">Chính sách bảo mật</a>
+                    <a class="btn-link" href="">Điều khoản và điều kiện</a>
+                    <a class="btn-link" href="">Chính sách hoàn trả</a>
+                    <a class="btn-link" href="">Câu hỏi thường gặp & Trợ giúp</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="d-flex flex-column text-start footer-item">
-                    <h4 class="text-light mb-3">Account</h4>
-                    <a class="btn-link" href="">My Account</a>
-                    <a class="btn-link" href="">Shop details</a>
-                    <a class="btn-link" href="">Shopping Cart</a>
-                    <a class="btn-link" href="">Wishlist</a>
-                    <a class="btn-link" href="">Order History</a>
-                    <a class="btn-link" href="">International Orders</a>
+                    <h4 class="text-light mb-3">Tài khoản</h4>
+                    <a class="btn-link" href="">Tài khoản của tôi</a>
+                    <a class="btn-link" href="">Chi tiết cửa hàng</a>
+                    <a class="btn-link" href="">Giỏ hàng</a>
+                    <a class="btn-link" href="">Danh sách yêu thích</a>
+                    <a class="btn-link" href="">Lịch sử đặt hàng</a>
+                    <a class="btn-link" href="">Đơn đặt hàng quốc tế</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer-item">
-                    <h4 class="text-light mb-3">Contact</h4>
-                    <p>Address: 1429 Netus Rd, NY 48247</p>
-                    <p>Email: Example@gmail.com</p>
-                    <p>Phone: +0123 4567 8910</p>
-                    <p>Payment Accepted</p>
+                    <h4 class="text-light mb-3">Liên hệ</h4>
+                    <p>Địa chỉ: Số 11 Ngõ 139, Tân Mai, Hoàng Mai, Hà Nội</p>
+                    <p>Email: hailamtranvan@gmail.com</p>
+                    <p>Phone: +8433 4681 298</p>
+                    <p>Thanh toán được chấp nhận</p>
                     <img
                         src="/client/img/payment.png"
                         class="img-fluid"
@@ -121,20 +121,19 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                 <span class="text-light"
                     ><a href="#"
-                        ><i class="fas fa-copyright text-light me-2"></i>Your
-                        Site Name</a
-                    >, All right reserved.</span
+                        ><i class="fas fa-copyright text-light me-2"></i>Laptopshop</a
+                    >, mọi bản quyền đều được bảo vệ.</span
                 >
             </div>
             <div class="col-md-6 my-auto text-center text-md-end text-white">
                 <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
                 <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
                 <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                Designed By
+                Thiết kế bởi
                 <a class="border-bottom" href="https://htmlcodex.com"
                     >HTML Codex</a
                 >
-                Distributed By
+                Được phân phối bởi
                 <a class="border-bottom" href="https://themewagon.com"
                     >ThemeWagon</a
                 >

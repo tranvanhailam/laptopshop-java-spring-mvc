@@ -6,7 +6,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Delete User</title>
+        <title>Delete Product</title>
         <!-- Latest compiled and minified CSS -->
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -26,24 +26,24 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                 <div class="col-12 mx-auto">
                     <div class="d-flex justify-content-between">
                         <h3>
-                            Delete the user with id ${user.id}, name
-                            ${user.fullName}
+                            Delete the product with id ${product.id}, name
+                            ${product.name}
                         </h3>
                     </div>
 
                     <hr />
                     <div class="alert alert-danger">
-                        Are you sure to delete this user ?
+                        Are you sure to delete this product ?
                     </div>
                     <form:form
                         method="post"
-                        action="/admin/user/delete"
-                        modelAttribute="user"
+                        action="/admin/product/delete"
+                        modelAttribute="product"
                     >
                         <div class="mb-3" style="display: none">
                             <label class="form-label">Id:</label>
                             <form:input
-                                value="${user.id}"
+                                value="${product.id}"
                                 type="text"
                                 class="form-control"
                                 path="id"

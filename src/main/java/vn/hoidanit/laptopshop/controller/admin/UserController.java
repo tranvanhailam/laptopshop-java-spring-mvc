@@ -34,13 +34,6 @@ public class UserController {
         this.roleService = roleService;
     }
 
-    // Index
-    // @RequestMapping("/")
-    // public String getHomePage(Model model) {
-    //     List<User> userList = this.userService.getAllUsersByEmail("hailamtranvan@gmail.com");
-    //     model.addAttribute("userList", userList);// Thêm thuộc tính
-    //     return "index";
-    // }
 
     // Table User
     @RequestMapping(value = "/admin/user", method = RequestMethod.GET)

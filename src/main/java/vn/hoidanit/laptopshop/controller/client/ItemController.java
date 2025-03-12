@@ -19,6 +19,7 @@ public class ItemController {
         this.productService = productService;
     }
 
+    // Product detail
     @RequestMapping(value="/product/detail/{id}", method=RequestMethod.GET)
     public String requestMethodName(Model model, @PathVariable long id) {
         Product product = this.productService.getProductById(id);

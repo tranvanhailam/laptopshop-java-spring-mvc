@@ -31,11 +31,13 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        //admin
         registry.addResourceHandler("/css/**").addResourceLocations("/resources/css/");
         // Config mỗi khi thấy link /css/** tìm bên trong /resources/css/
         // **: Đại diện cho các thư mục, file bên trong
         registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
         registry.addResourceHandler("/images/**").addResourceLocations("/resources/images/");
+        //client
         registry.addResourceHandler("/client/**").addResourceLocations("/resources/client/");
 
     }

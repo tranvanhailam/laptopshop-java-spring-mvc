@@ -64,6 +64,21 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
         <div class="container-fluid py-5" style="margin-top: 100px">
             <div class="container py-5">
                 <div class="row g-4 mb-5">
+                    <div>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li
+                                    class="breadcrumb-item active"
+                                    aria-current="page"
+                                >
+                                    Chi Tiết Sản Phẩm
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
                     <div class="col-lg-8 col-xl-9">
                         <div class="row g-4">
                             <div class="col-lg-6">
@@ -79,9 +94,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                             </div>
                             <div class="col-lg-6">
                                 <h4 class="fw-bold mb-3">${product.name}</h4>
-                                <p class="mb-3">
-                                    ${product.factory}
-                                </p>
+                                <p class="mb-3">${product.factory}</p>
                                 <h5 class="fw-bold mb-3">
                                     <fmt:formatNumber
                                         type="number"
@@ -438,7 +451,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                     ><i
                                                         class="fas fa-apple-alt me-2"
                                                     ></i
-                                                    >Apples</a
+                                                    >Dell</a
                                                 >
                                                 <span>(3)</span>
                                             </div>
@@ -451,7 +464,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                     ><i
                                                         class="fas fa-apple-alt me-2"
                                                     ></i
-                                                    >Oranges</a
+                                                    >Asus</a
                                                 >
                                                 <span>(5)</span>
                                             </div>
@@ -464,7 +477,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                     ><i
                                                         class="fas fa-apple-alt me-2"
                                                     ></i
-                                                    >Strawbery</a
+                                                    >Acer</a
                                                 >
                                                 <span>(2)</span>
                                             </div>
@@ -477,7 +490,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                     ><i
                                                         class="fas fa-apple-alt me-2"
                                                     ></i
-                                                    >Banana</a
+                                                    >Lenovo</a
                                                 >
                                                 <span>(8)</span>
                                             </div>
@@ -490,7 +503,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                     ><i
                                                         class="fas fa-apple-alt me-2"
                                                     ></i
-                                                    >Pumpkin</a
+                                                    >Apple</a
                                                 >
                                                 <span>(5)</span>
                                             </div>

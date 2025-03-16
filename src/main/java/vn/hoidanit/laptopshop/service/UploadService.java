@@ -21,6 +21,9 @@ public class UploadService {
 
     public String handleSaveUploadFile(MultipartFile file, String targetFolder) {
 
+        if (file.isEmpty())
+            return "";
+
         String rootPath = this.servletContext.getRealPath("/resources/images");
         // this.servletContext.getRealPath(): Lấy ra đường link tới nơi lưu file,
         // getRealPath lấy ra folder webapp
@@ -58,5 +61,17 @@ public class UploadService {
         }
 
         return fileName;
+    }
+
+    public boolean handleDeleteFile(String fileName, String targetFolder) {
+        // Lấy đường dẫn thư mục chứa ảnh
+        String rootPath = this.servletContext.getRealPath("/resources/images");
+        File file = new File(rootPath + File.separator + targetFolder + File.separator + fileName);
+
+        // Kiểm tra nếu file tồn tại thì xóa
+        if (file.exists()) {
+            return file.delete(); // Trả về true nếu xóa thành công, false nếu thất bại
+        }
+        return false;
     }
 }

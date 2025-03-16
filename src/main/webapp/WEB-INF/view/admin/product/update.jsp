@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="form"
-uri="http://www.springframework.org/tags/form" %>
+uri="http://www.springframework.org/tags/form" %> <%@ taglib
+uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,6 +22,13 @@ uri="http://www.springframework.org/tags/form" %>
             $(document).ready(() => {
                 //Trang web đã load
                 const productFile = $("#productFile"); //Lấy elm có id productFile
+
+                const orgImage = "${product.image}";
+                if (orgImage) {
+                    const urlImage = "/images/product/" + orgImage;
+                    $("#productPreview").attr("src", urlImage);
+                    $("#productPreview").css({ display: "block" });
+                }
                 productFile.change(function (e) {
                     const imgURL = URL.createObjectURL(e.target.files[0]); //Link URL hiển thị ảnh
                     $("#productPreview").attr("src", imgURL);
@@ -51,15 +60,25 @@ uri="http://www.springframework.org/tags/form" %>
                         <div class="mt-5">
                             <div class="row">
                                 <div class="col-md-6 col-12 mx-auto">
-                                    <h3>Create a product</h3>
+                                    <h3>Update a product</h3>
                                     <hr />
                                     <form:form
                                         method="post"
-                                        action="/admin/product/create"
-                                        modelAttribute="newProduct"
+                                        action="/admin/product/update"
+                                        modelAttribute="product"
                                         class="row"
                                         enctype="multipart/form-data"
                                     >
+                                        <div class="mb-3" style="display: none">
+                                            <label class="form-label"
+                                                >Id:</label
+                                            >
+                                            <form:input
+                                                type="text"
+                                                class="form-control"
+                                                path="id"
+                                            />
+                                        </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <c:set var="errorName">
                                                 <form:errors
@@ -224,10 +243,7 @@ uri="http://www.springframework.org/tags/form" %>
                                         </div>
                                         <div class="col-12 mb-3">
                                             <img
-                                                style="
-                                                    max-height: 250px;
-                                                    display: none;
-                                                "
+                                                style="max-height: 250px"
                                                 alt="product preview"
                                                 id="productPreview"
                                             />
@@ -237,7 +253,7 @@ uri="http://www.springframework.org/tags/form" %>
                                                 type="submit"
                                                 class="btn btn-primary"
                                             >
-                                                Create
+                                                Update
                                             </button>
                                         </div>
                                     </form:form>

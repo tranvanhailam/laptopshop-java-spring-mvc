@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%@taglib
-uri="http://www.springframework.org/tags/form" prefix="form" %>
+uri="http://www.springframework.org/tags/form" prefix="form" %> <%@ taglib
+uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -78,8 +79,16 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                             </div>
                             <div class="col-lg-6">
                                 <h4 class="fw-bold mb-3">${product.name}</h4>
-                                <p class="mb-3">Hãng sản xuất: ${product.factory}</p>
-                                <h5 class="fw-bold mb-3">${product.price} $</h5>
+                                <p class="mb-3">
+                                    ${product.factory}
+                                </p>
+                                <h5 class="fw-bold mb-3">
+                                    <fmt:formatNumber
+                                        type="number"
+                                        value="${product.price}"
+                                    />
+                                    đ
+                                </h5>
                                 <div class="d-flex mb-4">
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star text-secondary"></i>
@@ -87,9 +96,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <p class="mb-4">
-                                    ${product.shortDesc}
-                                </p>
+                                <p class="mb-4">${product.shortDesc}</p>
                                 <div
                                     class="input-group quantity mb-5"
                                     style="width: 100px"
@@ -159,9 +166,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                         role="tabpanel"
                                         aria-labelledby="nav-about-tab"
                                     >
-                                        <p>
-                                            ${product.detailDesc}
-                                        </p>
+                                        <p>${product.detailDesc}</p>
                                         <div class="px-2">
                                             <div class="row g-4">
                                                 <div class="col-6">
@@ -170,41 +175,12 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                                     >
                                                         <div class="col-6">
                                                             <p class="mb-0">
-                                                                Weight
+                                                                Số lượng
                                                             </p>
                                                         </div>
                                                         <div class="col-6">
                                                             <p class="mb-0">
-                                                                1 kg
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="row text-center align-items-center justify-content-center py-2"
-                                                    >
-                                                        <div class="col-6">
-                                                            <p class="mb-0">
-                                                                Country of
-                                                                Origin
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p class="mb-0">
-                                                                Agro Farm
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="row bg-light text-center align-items-center justify-content-center py-2"
-                                                    >
-                                                        <div class="col-6">
-                                                            <p class="mb-0">
-                                                                Quality
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p class="mb-0">
-                                                                Organic
+                                                                ${product.quantity}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -213,12 +189,12 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                                     >
                                                         <div class="col-6">
                                                             <p class="mb-0">
-                                                                Сheck
+                                                                Đã bán
                                                             </p>
                                                         </div>
                                                         <div class="col-6">
                                                             <p class="mb-0">
-                                                                Healthy
+                                                                ${product.sold}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -227,12 +203,27 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                                     >
                                                         <div class="col-6">
                                                             <p class="mb-0">
-                                                                Min Weight
+                                                                Hãng sản xuất
                                                             </p>
                                                         </div>
                                                         <div class="col-6">
                                                             <p class="mb-0">
-                                                                250 Kg
+                                                                ${product.factory}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="row text-center align-items-center justify-content-center py-2"
+                                                    >
+                                                        <div class="col-6">
+                                                            <p class="mb-0">
+                                                                Đối tượng sử
+                                                                dụng
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="mb-0">
+                                                                ${product.target}
                                                             </p>
                                                         </div>
                                                     </div>

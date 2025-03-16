@@ -7,11 +7,19 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Features</div>
+
                 <a class="nav-link" href="/admin">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
                     Dashboard
+                </a>
+
+                <a class="nav-link" href="/">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    Home Page
                 </a>
 
                 <a class="nav-link" href="/admin/user">

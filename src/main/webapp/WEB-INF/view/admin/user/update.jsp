@@ -14,6 +14,27 @@ uri="http://www.springframework.org/tags/form" %>
         <meta name="author" content="Hỏi Dân IT" />
         <title>Update User - Hỏi Dân IT</title>
         <link href="/css/styles.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <script>
+            $(document).ready(() => {
+                //Trang web đã load
+                const avatarFile = $("#avatarFile"); //Lấy elm có id avatarFile
+
+                const orgImage = "${user.avatar}";
+                if (orgImage) {
+                    const urlImage = "/images/avatar/" + orgImage;
+                    $("#avatarPreview").attr("src", urlImage);
+                    $("#avatarPreview").css({ display: "block" });
+                }
+
+                avatarFile.change(function (e) {
+                    const imgURL = URL.createObjectURL(e.target.files[0]); //Link URL hiển thị ảnh
+                    $("#avatarPreview").attr("src", imgURL);
+                    $("#avatarPreview").css({ display: "block" });
+                });
+            });
+        </script>
 
         <script
             src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
@@ -44,6 +65,8 @@ uri="http://www.springframework.org/tags/form" %>
                                         method="post"
                                         action="/admin/user/update"
                                         modelAttribute="user"
+                                        class="row"
+                                        enctype="multipart/form-data"
                                     >
                                         <div class="mb-3" style="display: none">
                                             <label class="form-label"
@@ -55,56 +78,152 @@ uri="http://www.springframework.org/tags/form" %>
                                                 path="id"
                                             />
                                         </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label"
-                                                >Email:</label
-                                            >
+                                        <div class="mb-3 col-12">
+                                            <label class="form-label">
+                                                Email: ${user.email}
+                                            </label>
+                                        </div>
+                                        <div
+                                            class="mb-3 col-12 col-md-6"
+                                            style="display: none"
+                                        >
+                                            <c:set var="errorEmail">
+                                                <form:errors
+                                                    path="email"
+                                                    class="invalid-feedback"
+                                                />
+                                            </c:set>
+                                            <label class="form-label">
+                                                Email:
+                                            </label>
                                             <form:input
                                                 type="email"
-                                                class="form-control"
+                                                class="form-control ${not empty errorEmail ? 'is-invalid' : ''}"
                                                 path="email"
-                                                disabled="true"
                                             />
+                                            ${errorEmail}
                                         </div>
-
-                                        <div class="mb-3">
+                                        <div
+                                            class="mb-3 col-12 col-md-6"
+                                            style="display: none"
+                                        >
+                                            <c:set var="errorPassword">
+                                                <form:errors
+                                                    path="password"
+                                                    class="invalid-feedback"
+                                                />
+                                            </c:set>
+                                            <label class="form-label"
+                                                >Password:</label
+                                            >
+                                            <form:input
+                                                type="password"
+                                                class="form-control ${not empty errorPassword ? 'is-invalid' : ''}"
+                                                path="password"
+                                            />
+                                            ${errorPassword}
+                                        </div>
+                                        <div class="mb-3 col-12 col-md-6">
+                                            <c:set var="errorPhoneNumber">
+                                                <form:errors
+                                                    path="phone"
+                                                    class="invalid-feedback"
+                                                />
+                                            </c:set>
                                             <label class="form-label"
                                                 >Phone number:</label
                                             >
                                             <form:input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control ${not empty errorPhoneNumber ? 'is-invalid' : ''}"
                                                 path="phone"
                                             />
+                                            ${errorPhoneNumber}
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="mb-3 col-12 col-md-6">
+                                            <c:set var="errorFullName">
+                                                <form:errors
+                                                    path="fullName"
+                                                    class="invalid-feedback"
+                                                />
+                                            </c:set>
                                             <label class="form-label"
                                                 >Full Name:</label
                                             >
                                             <form:input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control ${not empty errorFullName ? 'is-invalid' : ''}"
                                                 path="fullName"
                                             />
+                                            ${errorFullName}
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="mb-3 col-12">
+                                            <c:set var="errorAddress">
+                                                <form:errors
+                                                    path="address"
+                                                    class="invalid-feedback"
+                                                />
+                                            </c:set>
                                             <label class="form-label"
                                                 >Address:</label
                                             >
                                             <form:input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control ${not empty errorAddress ? 'is-invalid' : ''}"
                                                 path="address"
                                             />
+                                            ${errorAddress}
                                         </div>
 
-                                        <button
-                                            type="submit"
-                                            class="btn btn-warning"
-                                        >
-                                            Update
-                                        </button>
+                                        <div class="mb-3 col-12 col-md-6">
+                                            <label class="form-label"
+                                                >Role:</label
+                                            >
+                                            <form:select
+                                                class="form-select"
+                                                path="role.name"
+                                            >
+                                                <form:option value="ADMIN">
+                                                    ADMIN
+                                                </form:option>
+                                                <form:option value="USER">
+                                                    USER
+                                                </form:option>
+                                            </form:select>
+                                        </div>
+                                        <div class="mb-3 col-12 col-md-6">
+                                            <label
+                                                for="avatarFile"
+                                                class="form-label"
+                                            >
+                                                Avatar:
+                                            </label>
+                                            <input
+                                                class="form-control"
+                                                type="file"
+                                                id="avatarFile"
+                                                accept=".png, .jpg, .jpeg"
+                                                name="avatarFile"
+                                            />
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <img
+                                                style="
+                                                    max-height: 250px;
+                                                    display: none;
+                                                "
+                                                alt="avatar preview"
+                                                id="avatarPreview"
+                                            />
+                                        </div>
+                                        <div class="col-12 mb-5">
+                                            <button
+                                                type="submit"
+                                                class="btn btn-primary"
+                                            >
+                                                Update
+                                            </button>
+                                        </div>
                                     </form:form>
                                 </div>
                             </div>

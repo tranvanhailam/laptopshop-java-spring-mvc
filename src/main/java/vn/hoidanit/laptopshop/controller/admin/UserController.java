@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.validation.Valid;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.service.RoleService;
 import vn.hoidanit.laptopshop.service.UploadService;
@@ -34,7 +37,6 @@ public class UserController {
         this.roleService = roleService;
     }
 
-
     // Table User
     @RequestMapping(value = "/admin/user", method = RequestMethod.GET)
     public String getTableUserPage(Model model) {
@@ -45,7 +47,7 @@ public class UserController {
 
     // Detail User
     @RequestMapping(value = "/admin/user/detail/{id}", method = RequestMethod.GET)
-    public String getUserDetailPage(Model model, @PathVariable long id) {
+    public String getDetailUserPage(Model model, @PathVariable long id) {
         User user = this.userService.getUserById(id);
         model.addAttribute("user", user);
         return "admin/user/detail";
@@ -61,13 +63,29 @@ public class UserController {
 
     // After Update User
     @RequestMapping(value = "/admin/user/update", method = RequestMethod.POST)
-    public String getTableUserPageAfterUpdate(Model model, @ModelAttribute("user") User user) {
-        User currentUser = this.userService.getUserById(user.getId());
-        if (currentUser != null) {
-            currentUser.setFullName(user.getFullName());
-            currentUser.setAddress(user.getAddress());
-            currentUser.setPhone(user.getPhone());
-            this.userService.handleSaveUser(currentUser);
+    public String getTableUserPageAfterUpdate(Model model, @ModelAttribute("user") @Valid User user,
+            BindingResult userUpdatedBindingResult,
+            @RequestParam("avatarFile") MultipartFile avatarFile) {
+
+        if (userUpdatedBindingResult.hasErrors())
+            return "admin/user/update";
+
+        User userUpdated = this.userService.getUserById(user.getId());
+        if (userUpdated != null) {
+            userUpdated.setEmail(user.getEmail());
+            userUpdated.setPassword(user.getPassword());
+            userUpdated.setFullName(user.getFullName());
+            userUpdated.setPhone(user.getPhone());
+            userUpdated.setAddress(user.getAddress());
+            userUpdated.setRole(this.roleService.getRoleByName(user.getRole().getName()));
+
+            if (!avatarFile.isEmpty()) {
+                this.uploadService.handleDeleteFile(userUpdated.getAvatar(), "avatar");
+                String avatarFileName = this.uploadService.handleSaveUploadFile(avatarFile, "avatar");// Save file
+                userUpdated.setAvatar(avatarFileName);
+            }
+
+            this.userService.handleSaveUser(userUpdated);
         }
         return "redirect:/admin/user";
     }
@@ -83,7 +101,9 @@ public class UserController {
     // After Delete User
     @RequestMapping(value = "admin/user/delete", method = RequestMethod.POST)
     public String getTableUserPageAfterDelete(Model model, @ModelAttribute("user") User user) {
-        this.userService.deleteUserByID(user.getId());
+        User userDeleted = this.userService.getUserById(user.getId());
+        this.uploadService.handleDeleteFile(userDeleted.getAvatar(), "avatar");
+        this.userService.deleteUserByID(userDeleted.getId());
         return "redirect:/admin/user";
     }
 
@@ -96,13 +116,27 @@ public class UserController {
 
     // After Create User
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String getTableUserPageAfterCreate(Model model, @ModelAttribute("newUser") User user,
+    public String getTableUserPageAfterCreate(Model model,
+            @ModelAttribute("newUser") @Valid User user,
+            BindingResult newUserBindingResult,
             @RequestParam("avatarFile") MultipartFile avatarFile) {
+
+        // List<FieldError> errors = newUserBindingResult.getFieldErrors();
+        // for (FieldError error : errors) {
+        // System.out.println("------------------" + error.getField() + " - " +
+        // error.getDefaultMessage());
+        // }
+
+        if (newUserBindingResult.hasErrors())
+            return "admin/user/create";
+
         String avatarFileName = this.uploadService.handleSaveUploadFile(avatarFile, "avatar");// Save file
         String hashPassword = this.passwordEncoder.encode(user.getPassword());// hash password
-        user.setAvartar(avatarFileName);
+
+        user.setAvatar(avatarFileName);
         user.setPassword(hashPassword);
         user.setRole(this.roleService.getRoleByName(user.getRole().getName()));
+
         this.userService.handleSaveUser(user);
         return "redirect:/admin/user";
     }

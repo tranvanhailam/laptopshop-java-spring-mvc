@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="form"
-uri="http://www.springframework.org/tags/form" %>
+uri="http://www.springframework.org/tags/form" %> <%@ taglib
+uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,7 +14,7 @@ uri="http://www.springframework.org/tags/form" %>
         />
         <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
         <meta name="author" content="Hỏi Dân IT" />
-        <title>Detail User - Hỏi Dân IT</title>
+        <title>Detail Product - Hỏi Dân IT</title>
         <link href="/css/styles.css" rel="stylesheet" />
 
         <script
@@ -28,50 +30,72 @@ uri="http://www.springframework.org/tags/form" %>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Manage Users</h1>
+                        <h1 class="mt-4">Manage Products</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item">
                                 <a href="/admin">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item active">Users</li>
+                            <li class="breadcrumb-item active">Product</li>
                         </ol>
                         <div class="container mt-5">
                             <div class="row">
                                 <div class="col-12 mx-auto">
                                     <div class="d-flex justify-content-between">
-                                        <h3>User detail with id: ${user.id}</h3>
+                                        <h3>
+                                            Product detail with id:
+                                            ${product.id}
+                                        </h3>
                                     </div>
                                     <hr />
                                     <div class="card" style="width: 60%">
                                         <div class="card-header">
-                                            User information
+                                            Product information
                                         </div>
                                         <img
                                             style="width: 300px; height: 300px"
                                             class="card-img-top d-block mx-auto object-fit-cover"
-                                            src="/images/avatar/${user.avatar}"
-                                            alt="${user.fullName}"
+                                            src="/images/product/${product.image}"
+                                            alt="${product.name}"
                                         />
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">
-                                                ID: ${user.id}
+                                                ID: ${product.id}
                                             </li>
                                             <li class="list-group-item">
-                                                Email: ${user.email}
+                                                Name: ${product.name}
                                             </li>
                                             <li class="list-group-item">
-                                                Full Name: ${user.fullName}
+                                                Price:
+                                                <fmt:formatNumber
+                                                    type="number"
+                                                    value="${product.price}"
+                                                />
+                                                đ
                                             </li>
                                             <li class="list-group-item">
-                                                Address: ${user.address}
+                                                Detail Description:
+                                                ${product.detailDesc}
                                             </li>
                                             <li class="list-group-item">
-                                                Phone Number: ${user.phone}
+                                                Short Description:
+                                                ${product.shortDesc}
+                                            </li>
+                                            <li class="list-group-item">
+                                                Quantity: ${product.quantity}
+                                            </li>
+                                            <li class="list-group-item">
+                                                Sold: ${product.sold}
+                                            </li>
+                                            <li class="list-group-item">
+                                                Factory: ${product.factory}
+                                            </li>
+                                            <li class="list-group-item">
+                                                Target: ${product.target}
                                             </li>
                                         </ul>
                                     </div>
                                     <a
-                                        href="/admin/user"
+                                        href="/admin/product"
                                         class="btn btn-success mt-3"
                                         >Back</a
                                     >

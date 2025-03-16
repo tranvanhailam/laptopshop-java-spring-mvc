@@ -10,6 +10,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity // Dùng để biến class -> table
 @Table(name = "users")
@@ -18,12 +22,34 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    // @NotNull
+    @NotEmpty(message = "Email cannot be empty")
+    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
+
+    // @NotNull
+    @NotEmpty(message = "Password cannot be empty")
+    // @Size(message = "Password must be at least 6 characters and maximum 15
+    // characters", min = 6, max = 15)
     private String password;
+
+    // @NotNull
+    @NotEmpty(message = "Full Name cannot be empty")
+    @Size(message = "Full Name must be at least 6 characters", min = 6)
     private String fullName;
+
+    // @NotNull
+    @NotEmpty(message = "Address cannot be empty")
+    @Size(message = "Address must be at least 6 characters and maximum 100 characters", min = 6, max = 100)
     private String address;
+
+    // @NotNull
+    @NotEmpty(message = "Phone Number cannot be empty")
+    @Size(message = "Phone Number must be at least 6 characters and maximum 15 characters", min = 6, max = 15)
     private String phone;
-    private String avartar;
+
+    private String avatar;
 
     // FK Role -> User
     @ManyToOne
@@ -98,18 +124,18 @@ public class User {
         this.phone = phone;
     }
 
-    public String getAvartar() {
-        return avartar;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvartar(String avartar) {
-        this.avartar = avartar;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     @Override
     public String toString() {
         return "User [id=" + id + ", email=" + email + ", password=" + password + ", fullName=" + fullName
-                + ", address=" + address + ", phone=" + phone + ", avartar=" + avartar + "]";
+                + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
     }
 
 }

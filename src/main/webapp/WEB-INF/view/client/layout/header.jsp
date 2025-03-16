@@ -58,6 +58,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                 <div class="navbar-nav mx-auto">
                     <a href="/" class="nav-item nav-link active">Trang chủ</a>
                     <a href="shop.html" class="nav-item nav-link">Sản phẩm</a>
+                    <a href="/admin" class="nav-item nav-link">Quản trị</a>
                     <!-- <a href="shop-detail.html" class="nav-item nav-link"
                         >Shop Detail</a
                     > -->

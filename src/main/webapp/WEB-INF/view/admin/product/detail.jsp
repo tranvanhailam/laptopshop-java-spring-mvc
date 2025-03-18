@@ -52,8 +52,13 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                             Product information
                                         </div>
                                         <img
-                                            style="width: 300px; height: 300px"
-                                            class="card-img-top d-block mx-auto object-fit-cover"
+                                            style="
+                                                width: 300px;
+                                                height: 300px;
+                                                object-fit: cover;
+                                                object-position: center;
+                                            "
+                                            class="card-img-top d-block mx-auto"
                                             src="/images/product/${product.image}"
                                             alt="${product.name}"
                                         />

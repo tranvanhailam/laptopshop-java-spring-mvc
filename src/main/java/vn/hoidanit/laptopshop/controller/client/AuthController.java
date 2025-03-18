@@ -1,19 +1,58 @@
 package vn.hoidanit.laptopshop.controller.client;
 
+import java.net.PasswordAuthentication;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import vn.hoidanit.laptopshop.controller.admin.DashboardController;
 import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.domain.dto.RegisterDTO;
+import vn.hoidanit.laptopshop.service.AuthService;
+import vn.hoidanit.laptopshop.service.RoleService;
+import vn.hoidanit.laptopshop.service.UserService;
 
 @Controller
 public class AuthController {
 
+    private final AuthService authService;
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
+    private final RoleService roleService;
+
+    public AuthController(AuthService authService, UserService userService, PasswordEncoder passwordEncoder,
+            RoleService roleService) {
+        this.authService = authService;
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+        this.roleService = roleService;
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String getRegisterPage(Model model) {
-        model.addAttribute("newUser", new User());// 
+        model.addAttribute("registerUser", new RegisterDTO());//
         return "client/auth/register";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String getLoginPageAfterRegister(Model model, @ModelAttribute("registerUser") RegisterDTO registerDTO) {
+        User user = authService.mapperClassRegisterDTOToUser(registerDTO);
+
+        String hashPassword = this.passwordEncoder.encode(user.getPassword());// hash password
+
+        user.setPassword(hashPassword);
+        user.setRole(this.roleService.getRoleByName("USER"));
+
+        this.userService.handleSaveUser(user);
+
+        return "redirect:/login";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String getLoginPage(Model model) {
+        return "client/auth/login";
     }
 }

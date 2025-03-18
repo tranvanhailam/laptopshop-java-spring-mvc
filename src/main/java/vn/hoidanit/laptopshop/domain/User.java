@@ -40,13 +40,13 @@ public class User {
     private String fullName;
 
     // @NotNull
-    @NotEmpty(message = "Address cannot be empty")
-    @Size(message = "Address must be at least 6 characters and maximum 100 characters", min = 6, max = 100)
+    // @NotEmpty(message = "Address cannot be empty")
+    // @Size(message = "Address must be at least 6 characters and maximum 100 characters", min = 6, max = 100)
     private String address;
 
     // @NotNull
-    @NotEmpty(message = "Phone Number cannot be empty")
-    @Size(message = "Phone Number must be at least 6 characters and maximum 15 characters", min = 6, max = 15)
+    // @NotEmpty(message = "Phone Number cannot be empty")
+    // @Size(message = "Phone Number must be at least 6 characters and maximum 15 characters", min = 6, max = 15)
     private String phone;
 
     private String avatar;

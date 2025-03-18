@@ -47,8 +47,13 @@ uri="http://www.springframework.org/tags/form" %>
                                             User information
                                         </div>
                                         <img
-                                            style="width: 300px; height: 300px"
-                                            class="card-img-top d-block mx-auto object-fit-cover"
+                                            style="
+                                                width: 300px;
+                                                height: 300px;
+                                                object-fit: cover;
+                                                object-position: center;
+                                            "
+                                            class="card-img-top d-block mx-auto"
                                             src="/images/avatar/${user.avatar}"
                                             alt="${user.fullName}"
                                         />

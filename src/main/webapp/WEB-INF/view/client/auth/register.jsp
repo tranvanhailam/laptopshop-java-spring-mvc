@@ -49,8 +49,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                     <div
                                                         class="form-floating mb-3 mb-md-0"
                                                     >
+                                                        <c:set var="errorFirstName">
+                                                            <form:errors
+                                                                path="firstName"
+                                                                class="invalid-feedback"
+                                                            />
+                                                        </c:set>
                                                         <form:input
-                                                            class="form-control"
+                                                            class="form-control ${not empty errorFirstName ? 'is-invalid' : ''}"
                                                             id="inputFirstName"
                                                             type="text"
                                                             placeholder="Enter your first name"
@@ -60,12 +66,19 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                             for="inputFirstName"
                                                             >Tên</label
                                                         >
+                                                        ${errorFirstName}
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
+                                                        <c:set var="errorLastName">
+                                                            <form:errors
+                                                                path="lastName"
+                                                                class="invalid-feedback"
+                                                            />
+                                                        </c:set>
                                                         <form:input
-                                                            class="form-control"
+                                                            class="form-control ${not empty errorLastName ? 'is-invalid' : ''}"
                                                             id="inputLastName"
                                                             type="text"
                                                             placeholder="Enter your last name"
@@ -75,12 +88,19 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                             for="inputLastName"
                                                             >Họ</label
                                                         >
+                                                        ${errorLastName}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-floating mb-3">
+                                                <c:set var="errorEmail">
+                                                    <form:errors
+                                                        path="email"
+                                                        class="invalid-feedback"
+                                                    />
+                                                </c:set>
                                                 <form:input
-                                                    class="form-control"
+                                                    class="form-control ${not empty errorEmail ? 'is-invalid' : ''}"
                                                     id="inputEmail"
                                                     type="email"
                                                     placeholder="name@example.com"
@@ -89,14 +109,23 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                 <label for="inputEmail"
                                                     >Email</label
                                                 >
+                                                ${errorEmail}
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div
                                                         class="form-floating mb-3 mb-md-0"
                                                     >
+                                                        <c:set
+                                                            var="errorPassword"
+                                                        >
+                                                            <form:errors
+                                                                path="password"
+                                                                class="invalid-feedback"
+                                                            />
+                                                        </c:set>
                                                         <form:input
-                                                            class="form-control"
+                                                            class="form-control ${not empty errorPassword ? 'is-invalid' : ''}"
                                                             id="inputPassword"
                                                             type="password"
                                                             placeholder="Create a password"
@@ -106,14 +135,23 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                             for="inputPassword"
                                                             >Mật khẩu</label
                                                         >
+                                                        ${errorPassword}
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div
                                                         class="form-floating mb-3 mb-md-0"
                                                     >
+                                                        <c:set
+                                                            var="errorConfirmPassword"
+                                                        >
+                                                            <form:errors
+                                                                path="confirmPassword"
+                                                                class="invalid-feedback"
+                                                            />
+                                                        </c:set>
                                                         <form:input
-                                                            class="form-control"
+                                                            class="form-control ${not empty errorConfirmPassword ? 'is-invalid' : ''}"
                                                             id="inputPasswordConfirm"
                                                             type="password"
                                                             placeholder="Confirm password"
@@ -121,8 +159,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                         />
                                                         <label
                                                             for="inputPasswordConfirm"
-                                                            >Xác nhận mật khẩu</label
+                                                            >Xác nhận mật
+                                                            khẩu</label
                                                         >
+                                                        ${errorConfirmPassword}
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,7 +181,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                     <div class="card-footer text-center py-3">
                                         <div class="small">
                                             <a href="/login"
-                                                >Bạn có tài khoản? Đi đến đăng nhập</a
+                                                >Bạn có tài khoản? Đi đến đăng
+                                                nhập</a
                                             >
                                         </div>
                                     </div>

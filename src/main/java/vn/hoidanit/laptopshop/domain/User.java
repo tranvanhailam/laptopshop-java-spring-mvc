@@ -14,6 +14,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import vn.hoidanit.laptopshop.service.validator.StrongPassword;
 
 @Entity // Dùng để biến class -> table
 @Table(name = "users")
@@ -30,13 +31,14 @@ public class User {
 
     // @NotNull
     @NotEmpty(message = "Password cannot be empty")
+    @StrongPassword
     // @Size(message = "Password must be at least 6 characters and maximum 15
     // characters", min = 6, max = 15)
     private String password;
 
     // @NotNull
     @NotEmpty(message = "Full Name cannot be empty")
-    @Size(message = "Full Name must be at least 6 characters", min = 6)
+    @Size(message = "Full Name must be at least 2 characters", min = 2)
     private String fullName;
 
     // @NotNull

@@ -3,7 +3,7 @@ package vn.hoidanit.laptopshop.service;
 import org.springframework.stereotype.Service;
 import vn.hoidanit.laptopshop.controller.client.AuthController;
 import vn.hoidanit.laptopshop.domain.User;
-import vn.hoidanit.laptopshop.domain.dto.RegisterDTO;
+import vn.hoidanit.laptopshop.domain.dto.auth.RegisterDTO;
 
 @Service
 public class AuthService {

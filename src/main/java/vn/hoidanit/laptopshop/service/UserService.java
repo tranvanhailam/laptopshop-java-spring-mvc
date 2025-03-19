@@ -44,4 +44,12 @@ public class UserService {
         this.userRepository.deleteById(id);
     }
 
+    public boolean checkEmailExists(String email) {
+        return this.userRepository.existsByEmail(email);
+    }
+
+    public boolean checkEmailAndPasswordExists(String email, String password) {
+        return this.userRepository.existsByEmailAndPassword(email, password);
+    }
+
 }

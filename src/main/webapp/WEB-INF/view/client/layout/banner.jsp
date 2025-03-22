@@ -7,9 +7,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
         <div class="row g-5 align-items-center">
             <div class="col-md-12 col-lg-7">
                 <h4 class="mb-3 text-secondary">100% Sản phẩm chính hãng</h4>
-                <h1 class="mb-5 display-3 text-primary">
-                    Hàng cao cấp rẻ vô địch
-                </h1>
+                <h1 class="mb-5 display-3 text-primary">ĐẠI TIỆC SALE -50%</h1>
             </div>
             <div class="col-md-12 col-lg-5">
                 <div

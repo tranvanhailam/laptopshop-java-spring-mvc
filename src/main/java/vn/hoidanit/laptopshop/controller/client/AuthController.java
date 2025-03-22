@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jakarta.validation.Valid;
 import vn.hoidanit.laptopshop.domain.User;
-import vn.hoidanit.laptopshop.domain.dto.auth.LoginDTO;
 import vn.hoidanit.laptopshop.domain.dto.auth.RegisterDTO;
 import vn.hoidanit.laptopshop.service.AuthService;
 import vn.hoidanit.laptopshop.service.RoleService;
@@ -72,24 +71,23 @@ public class AuthController {
     // Before login
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(Model model) {
-        model.addAttribute("loginUser", new LoginDTO());
         return "client/auth/login";
     }
 
-    // After register
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String getHomePageAfterLogin(Model model, @ModelAttribute("loginUser") @Valid LoginDTO loginDTO,
-            BindingResult userLoginBindingResult) {
+    // After login
+    // @RequestMapping(value = "/login", method = RequestMethod.POST)
+    // public String getHomePageAfterLogin(Model model, @ModelAttribute("loginUser") @Valid LoginDTO loginDTO,
+    //         BindingResult userLoginBindingResult) {
 
-        List<FieldError> errors = userLoginBindingResult.getFieldErrors();
-        for (FieldError error : errors) {
-            System.out.println("------------------" + error.getField() + " - " +
-                    error.getDefaultMessage());
-        }
+    //     List<FieldError> errors = userLoginBindingResult.getFieldErrors();
+    //     for (FieldError error : errors) {
+    //         System.out.println("------------------" + error.getField() + " - " +
+    //                 error.getDefaultMessage());
+    //     }
 
-        if (userLoginBindingResult.hasErrors())
-            return "client/auth/login";
+    //     if (userLoginBindingResult.hasErrors())
+    //         return "client/auth/login";
 
-        return "redirect:/";
-    }
+    //     return "redirect:/";
+    // }
 }

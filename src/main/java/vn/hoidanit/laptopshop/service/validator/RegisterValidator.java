@@ -1,7 +1,9 @@
 package vn.hoidanit.laptopshop.service.validator;
 
-import org.springframework.stereotype.Service;
+import java.util.regex.Pattern;
 
+import org.springframework.stereotype.Service;
+import vn.hoidanit.laptopshop.controller.client.AuthController;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import vn.hoidanit.laptopshop.domain.dto.auth.RegisterDTO;
@@ -10,10 +12,13 @@ import vn.hoidanit.laptopshop.service.UserService;
 @Service
 public class RegisterValidator implements ConstraintValidator<RegisterChecked, RegisterDTO> {
 
+    private final AuthController authController;
+
     private final UserService userService;
 
-    public RegisterValidator(UserService userService) {
+    public RegisterValidator(UserService userService, AuthController authController) {
         this.userService = userService;
+        this.authController = authController;
     }
 
     @Override
@@ -42,6 +47,14 @@ public class RegisterValidator implements ConstraintValidator<RegisterChecked, R
 
         if (user.getEmail().isEmpty()) {
             context.buildConstraintViolationWithTemplate("Email không được bỏ trống")
+                    .addPropertyNode("email")
+                    .addConstraintViolation()
+                    .disableDefaultConstraintViolation();
+            valid = false;
+        }
+
+        if (!Pattern.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", user.getEmail())) {
+            context.buildConstraintViolationWithTemplate("Email không hợp lệ")
                     .addPropertyNode("email")
                     .addConstraintViolation()
                     .disableDefaultConstraintViolation();

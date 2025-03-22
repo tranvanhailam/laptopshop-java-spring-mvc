@@ -39,51 +39,46 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                         </h3>
                                     </div>
                                     <div class="card-body">
-                                        <form:form
-                                            method="post"
-                                            action="/login"
-                                            modelAttribute="loginUser"
-                                        >
+                                        <form method="post" action="/login">
+                                            <c:if test="${param.error != null}">
+                                                <div
+                                                    class="my-2"
+                                                    style="color: red"
+                                                >
+                                                    Invalid email or password.
+                                                </div>
+                                            </c:if>
+
                                             <div class="form-floating mb-3">
-                                                <c:set var="errorEmail">
-                                                    <form:errors
-                                                        path="email"
-                                                        class="invalid-feedback"
-                                                    />
-                                                </c:set>
-                                                <form:input
-                                                    class="form-control ${not empty errorEmail ? 'is-invalid' : ''}"
+                                                <input
+                                                    class="form-control"
                                                     id="inputEmail"
                                                     type="email"
                                                     placeholder="name@example.com"
-                                                    path="email"
+                                                    name="username"
                                                 />
                                                 <label for="inputEmail"
                                                     >Email</label
                                                 >
-                                                ${errorEmail}
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <c:set
-                                                            var="errorPassword"
-                                                        >
-                                                            <form:errors
-                                                                path="password"
-                                                                class="invalid-feedback"
-                                                            />
-                                                        </c:set>
-                                                        <form:input
-                                                            class="form-control ${not empty errorPassword ? 'is-invalid' : ''}"
-                                                            id="inputPassword"
-                                                            type="password"
-                                                            placeholder="Create a password"
-                                                            path="password"
-                                                        />
-                                                        <label
-                                                            for="inputPassword"
-                                                            >Mật khẩu</label
-                                                        >
-                                                        ${errorPassword}
+                                                <input
+                                                    class="form-control"
+                                                    id="inputPassword"
+                                                    type="password"
+                                                    placeholder="Create a password"
+                                                    name="password"
+                                                />
+                                                <label for="inputPassword"
+                                                    >Mật khẩu</label
+                                                >
+                                            </div>
+                                            <div>
+                                                <input
+                                                    type="hidden"
+                                                    name="${_csrf.parameterName}"
+                                                    value="${_csrf.token}"
+                                                />
                                             </div>
                                             <div class="form-check mb-3">
                                                 <input
@@ -114,7 +109,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                     Đăng nhập
                                                 </button>
                                             </div>
-                                        </form:form>
+                                        </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
                                         <div class="small">

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.service.ProductService;
 
@@ -21,10 +23,17 @@ public class HomePageController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String getHomePage(Model model) {
+    public String getHomePage(Model model, HttpServletRequest request) {
         List<Product> productList = this.productService.getAllProducts();
         model.addAttribute("productList", productList);
+        HttpSession session = request.getSession(false);
+        
         return "client/homepage/show";
+    }
+
+    @RequestMapping(value = "/access-deny", method = RequestMethod.GET)
+    public String getAccessDenyPage(Model model) {
+        return "client/auth/access-deny";
     }
 
 }

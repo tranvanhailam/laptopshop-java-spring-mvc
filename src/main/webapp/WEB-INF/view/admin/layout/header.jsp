@@ -4,7 +4,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="/admin">Laptopshop</a>
+    <a class="navbar-brand ps-3" href="/">Laptopshop</a>
     <!-- Sidebar Toggle-->
     <button
         class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"

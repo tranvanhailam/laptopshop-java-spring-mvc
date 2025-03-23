@@ -40,12 +40,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                     </div>
                                     <div class="card-body">
                                         <form method="post" action="/login">
-                                            <c:if test="${param.error != null}">
+                                            <c:if
+                                                test="${param.logout != null}"
+                                            >
                                                 <div
                                                     class="my-2"
-                                                    style="color: red"
+                                                    style="color: #0b5ed7"
                                                 >
-                                                    Invalid email or password.
+                                                    Bạn đã đăng xuất thành công.
                                                 </div>
                                             </c:if>
 
@@ -80,12 +82,20 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                     value="${_csrf.token}"
                                                 />
                                             </div>
+                                            <c:if test="${param.error != null}">
+                                                <div
+                                                    class="my-2"
+                                                    style="color: red"
+                                                >
+                                                    Sai email hoặc mật khẩu.
+                                                </div>
+                                            </c:if>
                                             <div class="form-check mb-3">
                                                 <input
                                                     class="form-check-input"
                                                     id="inputRememberPassword"
                                                     type="checkbox"
-                                                    value=""
+                                                    value="remember-me"
                                                 />
                                                 <label
                                                     class="form-check-label"

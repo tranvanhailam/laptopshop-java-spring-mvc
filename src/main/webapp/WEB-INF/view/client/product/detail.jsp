@@ -61,7 +61,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
         <!-- Navbar End -->
 
         <!-- Single Product Start -->
-        <div class="container-fluid py-5" style="margin-top: 100px">
+        <div class="container-fluid py-5" style="margin-top: 60px">
             <div class="container py-5">
                 <div class="row g-4 mb-5">
                     <div>

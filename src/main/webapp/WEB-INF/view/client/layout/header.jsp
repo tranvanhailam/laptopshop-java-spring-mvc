@@ -59,7 +59,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                 id="navbarCollapse"
             >
                 <div class="navbar-nav">
-                    <a href="/" class="nav-item nav-link active">Trang chủ</a>
+                    <a href="/" class="nav-item nav-link">Trang chủ</a>
                     <a href="shop.html" class="nav-item nav-link">Sản phẩm</a>
                     <a href="/admin" class="nav-item nav-link">Quản trị</a>
                 </div>
@@ -72,7 +72,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                         <i class="fas fa-search text-primary"></i>
                     </button>
                     <c:if test="${not empty pageContext.request.userPrincipal}">
-                        <a href="#" class="position-relative me-4 my-auto">
+                        <a href="/cart" class="position-relative me-4 my-auto">
                             <i class="fa fa-shopping-bag fa-2x"></i>
                             <span
                                 class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
@@ -82,8 +82,9 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                     height: 20px;
                                     min-width: 20px;
                                 "
-                                >3</span
                             >
+                                <c:out value="${sessionScope.sum}" />
+                            </span>
                         </a>
                         <div class="dropdown my-auto">
                             <a
@@ -153,10 +154,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                         </div>
                     </c:if>
                     <c:if test="${empty pageContext.request.userPrincipal}">
-                        <a
-                            href="/login"
-                            class="position-relative me-4 my-auto"
-                        >
+                        <a href="/login" class="position-relative me-4 my-auto">
                             Đăng nhập
                         </a>
                     </c:if>

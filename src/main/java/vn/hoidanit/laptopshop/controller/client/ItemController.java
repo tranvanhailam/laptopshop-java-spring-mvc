@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpSession;
 import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.service.ProductService;
 
-
 @Controller
 public class ItemController {
 
@@ -33,7 +32,7 @@ public class ItemController {
     public String addProductToCart(Model model, @PathVariable long id,HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         String email = (String) session.getAttribute("email");
-        this.productService.handleAddProductToCart(email, id);
+        this.productService.handleAddProductToCart(email, id,session);
         return "redirect:/";
     }
 

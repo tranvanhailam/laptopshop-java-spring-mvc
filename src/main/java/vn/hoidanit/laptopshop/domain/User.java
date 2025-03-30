@@ -44,12 +44,14 @@ public class User {
 
     // @NotNull
     // @NotEmpty(message = "Address cannot be empty")
-    // @Size(message = "Address must be at least 6 characters and maximum 100 characters", min = 6, max = 100)
+    // @Size(message = "Address must be at least 6 characters and maximum 100
+    // characters", min = 6, max = 100)
     private String address;
 
     // @NotNull
     // @NotEmpty(message = "Phone Number cannot be empty")
-    // @Size(message = "Phone Number must be at least 6 characters and maximum 15 characters", min = 6, max = 15)
+    // @Size(message = "Phone Number must be at least 6 characters and maximum 15
+    // characters", min = 6, max = 15)
     private String phone;
 
     private String avatar;
@@ -63,9 +65,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
-    //User -> Cart
+    // User -> Cart
     @OneToOne(mappedBy = "user")
-     private Cart cart;
+    private Cart cart;
 
     public Role getRole() {
         return role;
@@ -139,10 +141,17 @@ public class User {
         this.avatar = avatar;
     }
 
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     @Override
     public String toString() {
         return "User [id=" + id + ", email=" + email + ", password=" + password + ", fullName=" + fullName
                 + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
     }
-
 }

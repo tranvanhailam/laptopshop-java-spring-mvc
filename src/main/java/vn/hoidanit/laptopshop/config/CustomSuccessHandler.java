@@ -62,7 +62,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         if (session == null) {
             return;
         }
-        session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION); 
+        session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
     }
 
     protected void setSessionAttributes(HttpServletRequest request, Authentication authentication) {
@@ -70,6 +70,8 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         String email = authentication.getName();
         User user = this.userService.getFirstUserByEmail(email);
         if (user != null) {
+            session.setAttribute("id", user.getId());
+            session.setAttribute("email", user.getEmail());
             session.setAttribute("fullName", user.getFullName());
             session.setAttribute("avatar", user.getAvatar());
         }

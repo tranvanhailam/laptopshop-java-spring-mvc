@@ -95,7 +95,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                     class="form-check-input"
                                                     id="inputRememberPassword"
                                                     type="checkbox"
-                                                    value="remember-me"
+                                                    name="remember-me"
                                                 />
                                                 <label
                                                     class="form-check-label"

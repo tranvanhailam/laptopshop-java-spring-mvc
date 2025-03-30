@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.service.ProductService;
 
@@ -20,12 +22,19 @@ public class ItemController {
     }
 
     // Product detail
-    @RequestMapping(value="/product/detail/{id}", method=RequestMethod.GET)
-    public String requestMethodName(Model model, @PathVariable long id) {
+    @RequestMapping(value = "/product/detail/{id}", method = RequestMethod.GET)
+    public String getDetailProductPage(Model model, @PathVariable long id) {
         Product product = this.productService.getProductById(id);
         model.addAttribute("product", product);
         return "client/product/detail";
     }
-    
-    
+
+    @RequestMapping(value = "/product/add-product-to-cart/{id}", method = RequestMethod.POST)
+    public String addProductToCart(Model model, @PathVariable long id,HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String email = (String) session.getAttribute("email");
+        this.productService.handleAddProductToCart(email, id);
+        return "redirect:/";
+    }
+
 }

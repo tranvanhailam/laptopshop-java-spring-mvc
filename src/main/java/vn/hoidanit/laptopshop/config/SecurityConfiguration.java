@@ -50,7 +50,7 @@ public class SecurityConfiguration {
         public SpringSessionRememberMeServices springSessionRememberMeServices() {
                 SpringSessionRememberMeServices springSessionRememberMeServices = new SpringSessionRememberMeServices();
                 // optionally customize
-                springSessionRememberMeServices.setAlwaysRemember(true);
+                springSessionRememberMeServices.setAlwaysRemember(false);
                 return springSessionRememberMeServices;
         }
 
@@ -87,7 +87,8 @@ public class SecurityConfiguration {
                                                 .maximumSessions(1)
                                                 .maxSessionsPreventsLogin(false))
 
-                                .logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(true))
+                                .logout(logout -> logout.deleteCookies("JSESSIONID",
+                                                "remember-me").invalidateHttpSession(true))
 
                                 .rememberMe((rememberMe) -> rememberMe
                                                 .rememberMeServices(springSessionRememberMeServices()));

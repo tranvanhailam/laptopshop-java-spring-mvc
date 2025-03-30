@@ -145,7 +145,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                                 text-overflow: ellipsis;
                                                             "
                                                         >
-                                                            <a href="/product/detail/${product.id}">${product.name}</a>
+                                                            <a
+                                                                href="/product/detail/${product.id}"
+                                                                >${product.name}</a
+                                                            >
                                                         </h4>
                                                         <p
                                                             style="
@@ -161,7 +164,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                             ${product.shortDesc}
                                                         </p>
                                                         <div
-                                                            class="d-flex flex-lg-wrap"
+                                                            class="d-flex flex-lg-wrap justify-content-center"
                                                         >
                                                             <p
                                                                 style="
@@ -177,14 +180,23 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                                 />
                                                                 đ
                                                             </p>
-                                                            <a
-                                                                href="#"
-                                                                class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"
-                                                                ><i
-                                                                    class="fa fa-shopping-bag me-2 text-primary"
-                                                                ></i>
-                                                                + Giỏ hàng</a
+                                                            <form
+                                                                action="/product/add-product-to-cart/${product.id}"
+                                                                method="post"
                                                             >
+                                                                <input
+                                                                    type="hidden"
+                                                                    name="${_csrf.parameterName}"
+                                                                    value="${_csrf.token}"
+                                                                />
+                                                                <button
+                                                                    href="#"
+                                                                    class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"
+                                                                >
+                                                                    Thêm vào giỏ
+                                                                    hàng
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -38,6 +38,10 @@ public class OrderService {
         return this.orderRepository.findAll();
     }
 
+    public List<Order> getOrderByUser(User user) {
+        return this.orderRepository.findByUser(user);
+    }
+
     public void handlePlaceOrder(User user, HttpSession session, ReceiverInfoDTO receiverInfoDTO) {
 
         Cart cart = this.cartService.getCartByUser(user);

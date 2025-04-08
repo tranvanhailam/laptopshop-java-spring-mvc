@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import vn.hoidanit.laptopshop.domain.Cart;
 import vn.hoidanit.laptopshop.domain.CartDetail;
+import vn.hoidanit.laptopshop.domain.Order;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.domain.dto.order.ReceiverInfoDTO;
 import vn.hoidanit.laptopshop.service.CartDetailService;
@@ -82,6 +85,16 @@ public class PlaceOrderController {
     @RequestMapping(value = "/thanks", method = RequestMethod.GET)
     public String getThanksPage(Model model) {
         return "client/cart/thanks";
+    }
+
+    @RequestMapping(value = "/order-history", method = RequestMethod.GET)
+    public String getOrderHistoryPage(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String email = (String) session.getAttribute("email");
+        User user = this.userService.getFirstUserByEmail(email);
+        List<Order> orderList = this.orderService.getOrderByUser(user);
+        model.addAttribute("orderList", orderList);
+        return "client/cart/order-history";
     }
 
 }

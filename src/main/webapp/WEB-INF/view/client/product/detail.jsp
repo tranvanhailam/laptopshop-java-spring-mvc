@@ -94,7 +94,16 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <form
+                                action="/product/add-product-to-cart-from-view-detail/${product.id}"
+                                method="post"
+                                class="col-lg-6"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="${_csrf.parameterName}"
+                                    value="${_csrf.token}"
+                                />
                                 <h4 class="fw-bold mb-3">${product.name}</h4>
                                 <p class="mb-3">${product.factory}</p>
                                 <h5 class="fw-bold mb-3">
@@ -118,33 +127,38 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                 >
                                     <div class="input-group-btn">
                                         <button
+                                            type="button"
                                             class="btn btn-sm btn-minus rounded-circle bg-light border"
                                         >
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
                                     <input
+                                        name="quantity"
                                         type="text"
                                         class="form-control form-control-sm text-center border-0"
                                         value="1"
                                     />
                                     <div class="input-group-btn">
                                         <button
+                                            type="button"
                                             class="btn btn-sm btn-plus rounded-circle bg-light border"
                                         >
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
                                 </div>
-                                <a
+                                <button
+                                    type="submit"
                                     href="#"
                                     class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"
-                                    ><i
+                                >
+                                    <i
                                         class="fa fa-shopping-bag me-2 text-primary"
                                     ></i>
-                                    + Giỏ hàng</a
-                                >
-                            </div>
+                                    + Giỏ hàng
+                                </button>
+                            </form>
                             <div class="col-lg-12">
                                 <nav>
                                     <div class="nav nav-tabs mb-3">

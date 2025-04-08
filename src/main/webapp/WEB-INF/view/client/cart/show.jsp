@@ -120,8 +120,7 @@ uri="http://www.springframework.org/tags/form" %>
                                     <td>
                                         <p class="mb-0 mt-4">
                                             <a
-                                                href="/product/${cartDetail.product.id}"
-                                                target="_blank"
+                                                href="/product/detail/${cartDetail.product.id}"
                                             >
                                                 ${cartDetail.product.name}
                                             </a>
@@ -260,7 +259,7 @@ uri="http://www.springframework.org/tags/form" %>
                                         name="${_csrf.parameterName}"
                                         value="${_csrf.token}"
                                     />
-                                    <div style="display: block">
+                                    <div style="display: none">
                                         <c:forEach
                                             var="cartDetail"
                                             items="${cart.cartDetails}"

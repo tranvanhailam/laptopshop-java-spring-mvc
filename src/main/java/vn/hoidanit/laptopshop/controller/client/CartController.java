@@ -55,11 +55,22 @@ public class CartController {
     }
 
     @RequestMapping(value = "/product/add-product-to-cart/{id}", method = RequestMethod.POST)
-    public String addProductToCart(Model model, @PathVariable long id, HttpServletRequest request) {
+    public String addProductToCart(Model model, @PathVariable long id,
+            HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         String email = (String) session.getAttribute("email");
-        this.productService.handleAddProductToCart(email, id, session);
+        this.productService.handleAddProductToCart(email, id, 1, session);
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/product/add-product-to-cart-from-view-detail/{id}", method = RequestMethod.POST)
+    public String addProductToCartFromViewDetail(Model model, @PathVariable long id,
+            @RequestParam("quantity") int quantity,
+            HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String email = (String) session.getAttribute("email");
+        this.productService.handleAddProductToCart(email, id, quantity, session);
+        return "redirect:/product/detail/" + id;
     }
 
     @RequestMapping(value = "/delete-cart-product/{id}", method = RequestMethod.POST)
@@ -68,19 +79,5 @@ public class CartController {
         this.cartDetailService.handleRemoveCartDetail(id, session);
         return "redirect:/cart";
     }
-
-    // @RequestMapping(value = "/confirm-checkout", method = RequestMethod.POST)
-    // public String confirmCheckout(@ModelAttribute("cart") Cart cart) {
-    //     List<CartDetail> cartDetailList = cart == null ? new ArrayList<CartDetail>() : cart.getCartDetails();
-    //     this.cartDetailService.handleUpdateCartDetailBeforeCheckout(cartDetailList);
-    //     return "redirect:/checkout";
-    // }
-
-    // @RequestMapping(value = "/checkout", method = RequestMethod.GET)
-    // public String getCheckoutPage(Model model, @RequestParam String param) {
-    //     Cart cart = new Cart();
-    //     model.addAttribute("cart", cart);
-    //     return "/client/cart/checkout";
-    // }
 
 }

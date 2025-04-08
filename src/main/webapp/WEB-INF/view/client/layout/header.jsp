@@ -131,7 +131,9 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item" href="#"
+                                    <a
+                                        class="dropdown-item"
+                                        href="/order-history"
                                         >Lịch sử mua hàng</a
                                     >
                                 </li>

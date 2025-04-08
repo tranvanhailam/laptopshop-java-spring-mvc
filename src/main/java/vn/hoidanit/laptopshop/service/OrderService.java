@@ -34,6 +34,10 @@ public class OrderService {
         this.cartDetailRepository = cartDetailRepository;
     }
 
+    public List<Order> getAllOrders() {
+        return this.orderRepository.findAll();
+    }
+
     public void handlePlaceOrder(User user, HttpSession session, ReceiverInfoDTO receiverInfoDTO) {
 
         Cart cart = this.cartService.getCartByUser(user);
@@ -57,7 +61,7 @@ public class OrderService {
 
                 order.setTotalPrice(totalPrice);
                 order = this.orderRepository.save(order);
-                
+
                 // Create OrderDetail
                 for (CartDetail cartDetail : cartDetailList) {
                     totalPrice += cartDetail.getPrice() * cartDetail.getQuantity();

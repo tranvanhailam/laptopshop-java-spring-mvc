@@ -2,6 +2,7 @@ package vn.hoidanit.laptopshop.service;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.servlet.http.HttpSession;
 import vn.hoidanit.laptopshop.domain.Cart;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.repository.CartRepository;
@@ -20,5 +21,5 @@ public class CartService {
 
     public Cart getCartByUser(User user) {
         return this.cartRepository.findByUser(user);
-    } 
+    }
 }

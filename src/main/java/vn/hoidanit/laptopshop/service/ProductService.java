@@ -11,6 +11,7 @@ import vn.hoidanit.laptopshop.domain.Cart;
 import vn.hoidanit.laptopshop.domain.CartDetail;
 import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.domain.dto.order.ReceiverInfoDTO;
 import vn.hoidanit.laptopshop.repository.CartRepository;
 import vn.hoidanit.laptopshop.repository.ProductRepository;
 import vn.hoidanit.laptopshop.repository.UserRepository;
@@ -21,13 +22,17 @@ public class ProductService {
     private final CartService cartService;
     private final UserService userService;
     private final CartDetailService cartDetailService;
+    private final OrderService orderService;
+    private final OrderDetailService orderDetailService;
 
     public ProductService(ProductRepository productRepository, CartService cartService, UserService userService,
-            CartDetailService cartDetailService) {
+            CartDetailService cartDetailService, OrderService orderService, OrderDetailService orderDetailService) {
         this.productRepository = productRepository;
         this.cartService = cartService;
         this.userService = userService;
         this.cartDetailService = cartDetailService;
+        this.orderService = orderService;
+        this.orderDetailService = orderDetailService;
     }
 
     public Product handleSaveProduct(Product product) {
@@ -60,20 +65,11 @@ public class ProductService {
             Product product = this.productRepository.findById(id);
             if (product != null) {
 
-                // boolean isExistsProductInCart =
-                // this.cartDetailService.checkExistsProductInCart(cart, product);
-
-                // CartDetail cartDetail = new CartDetail();
                 CartDetail cartDetail = this.cartDetailService.getCartDetailByCartAndProduct(cart, product);
 
-                if (cartDetail != null) {
-                    // cartDetail.setCart(cart);
-                    // cartDetail.setProduct(product);
-                    // cartDetail.setPrice(cartDetail.getPrice() + product.getPrice());
+                if (cartDetail != null) { // when product in cart
                     cartDetail.setQuantity(cartDetail.getQuantity() + 1);
                     this.cartDetailService.handleSaveCartDetail(cartDetail);
-                    // cart.setSum(cart.getSum() + 1);
-                    // this.cartService.handleSaveCart(cart);
                 } else {
                     CartDetail newCartDetail = new CartDetail();
                     newCartDetail.setCart(cart);
@@ -89,5 +85,7 @@ public class ProductService {
             }
         }
     }
+
+
 
 }

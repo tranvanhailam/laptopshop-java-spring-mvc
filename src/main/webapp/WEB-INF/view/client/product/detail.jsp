@@ -74,7 +74,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                     class="breadcrumb-item active"
                                     aria-current="page"
                                 >
-                                    Chi Tiết Sản Phẩm
+                                    <a href="/product/detail/${product.id}">
+                                        Chi Tiết Sản Phẩm
+                                    </a>
                                 </li>
                             </ol>
                         </nav>

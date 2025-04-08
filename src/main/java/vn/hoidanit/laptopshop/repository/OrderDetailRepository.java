@@ -1,13 +1,11 @@
 package vn.hoidanit.laptopshop.repository;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import vn.hoidanit.laptopshop.domain.Product;
+import vn.hoidanit.laptopshop.domain.OrderDetail;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
-    Product findById(long id);
-    
+public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> {
+
 }

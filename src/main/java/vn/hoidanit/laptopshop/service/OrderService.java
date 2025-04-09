@@ -38,6 +38,18 @@ public class OrderService {
         return this.orderRepository.findAll();
     }
 
+    public Order getOrderById(long id) {
+        return this.orderRepository.findById(id);
+    }
+
+    public Order handleSaveOrder(Order order) {
+        return this.orderRepository.save(order);
+    }
+
+    public void deleteOrderById(long id) {
+        this.orderRepository.deleteById(id);
+    }
+
     public List<Order> getOrderByUser(User user) {
         return this.orderRepository.findByUser(user);
     }

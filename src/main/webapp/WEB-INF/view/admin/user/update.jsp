@@ -54,7 +54,7 @@ uri="http://www.springframework.org/tags/form" %>
                             <li class="breadcrumb-item">
                                 <a href="/admin">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item active">Users</li>
+                            <li class="breadcrumb-item active">User</li>
                         </ol>
                         <div class="mt-5">
                             <div class="row">

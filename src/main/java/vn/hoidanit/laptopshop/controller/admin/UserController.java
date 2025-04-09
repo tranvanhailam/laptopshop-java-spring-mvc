@@ -102,7 +102,7 @@ public class UserController {
     public String getTableUserPageAfterDelete(Model model, @ModelAttribute("user") User user) {
         User userDeleted = this.userService.getUserById(user.getId());
         this.uploadService.handleDeleteFile(userDeleted.getAvatar(), "avatar");
-        this.userService.deleteUserByID(userDeleted.getId());
+        this.userService.deleteUserById(userDeleted.getId());
         return "redirect:/admin/user";
     }
 

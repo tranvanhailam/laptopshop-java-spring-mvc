@@ -55,7 +55,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                             <li class="breadcrumb-item">
                                 <a href="/admin">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item active">Products</li>
+                            <li class="breadcrumb-item active">Product</li>
                         </ol>
                         <div class="mt-5">
                             <div class="row">

@@ -40,7 +40,7 @@ public class UserService {
         return this.userRepository.findById(id);
     }
 
-    public void deleteUserByID(long id) {
+    public void deleteUserById(long id) {
         this.userRepository.deleteById(id);
     }
 

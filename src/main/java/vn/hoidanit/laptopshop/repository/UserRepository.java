@@ -1,5 +1,7 @@
 package vn.hoidanit.laptopshop.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -20,5 +22,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByEmail(String email);
 
     boolean existsByEmailAndPassword(String email, String password);
+
+    Page<User> findAll(Pageable pageable);
 
 }

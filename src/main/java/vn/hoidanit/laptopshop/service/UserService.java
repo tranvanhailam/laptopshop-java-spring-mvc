@@ -2,8 +2,11 @@ package vn.hoidanit.laptopshop.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.repository.UserRepository;
 
@@ -18,6 +21,10 @@ public class UserService {
 
     public User handleSaveUser(User user) {
         return this.userRepository.save(user);
+    }
+
+    public Page<User> getAllUsers(Pageable pageable) {
+        return this.userRepository.findAll(pageable);
     }
 
     public List<User> getAllUsers() {

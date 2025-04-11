@@ -2,6 +2,9 @@ package vn.hoidanit.laptopshop.controller.client;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,16 +27,11 @@ public class HomePageController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getHomePage(Model model, HttpServletRequest request) {
-        List<Product> productList = this.productService.getAllProducts();
+        Pageable pageable = PageRequest.of(0, 10);// limit = 2
+        Page<Product> productPageList = this.productService.getAllProducts(pageable);
+        List<Product> productList = productPageList.getContent();
         model.addAttribute("productList", productList);
-        HttpSession session = request.getSession(false);
-        
         return "client/homepage/show";
-    }
-
-    @RequestMapping(value = "/access-deny", method = RequestMethod.GET)
-    public String getAccessDenyPage(Model model) {
-        return "client/auth/access-deny";
     }
 
 }

@@ -129,7 +129,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                     </a>
                                                 </li>
                                             </c:forEach>
-
                                             <li class="page-item">
                                                 <a
                                                     class="${totalPages eq currentPage ? 'disabled page-link' : 'page-link'}"

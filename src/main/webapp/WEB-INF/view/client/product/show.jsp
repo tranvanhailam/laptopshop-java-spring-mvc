@@ -82,7 +82,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                     <div class="row g-4 fruite">
                         <div class="col-12 col-md-4">
                             <div class="row g-4">
-                                <div class="col-12">
+                                <div class="col-12" id="factoryFilter">
                                     <div class="mb-2"><b>Hãng sản xuất</b></div>
                                     <div class="form-check form-check-inline">
                                         <input
@@ -165,7 +165,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                         >
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12" id="targetFilter">
                                     <div class="mb-2">
                                         <b>Mục đích sử dụng</b>
                                     </div>
@@ -236,7 +236,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                         >
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12" id="priceFilter">
                                     <div class="mb-2"><b>Mức giá</b></div>
 
                                     <div class="form-check form-check-inline">
@@ -244,7 +244,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                             class="form-check-input"
                                             type="checkbox"
                                             id="price-2"
-                                            value="duoi-10-trieu"
+                                            value="under-10000000"
                                         />
                                         <label
                                             class="form-check-label"
@@ -258,7 +258,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                             class="form-check-input"
                                             type="checkbox"
                                             id="price-3"
-                                            value="10-15-trieu"
+                                            value="10000000-15000000"
                                         />
                                         <label
                                             class="form-check-label"
@@ -272,7 +272,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                             class="form-check-input"
                                             type="checkbox"
                                             id="price-4"
-                                            value="15-20-trieu"
+                                            value="15000000-20000000"
                                         />
                                         <label
                                             class="form-check-label"
@@ -286,7 +286,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                             class="form-check-input"
                                             type="checkbox"
                                             id="price-5"
-                                            value="tren-20-triệu"
+                                            value="over-20000000"
                                         />
                                         <label
                                             class="form-check-label"
@@ -303,7 +303,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                             class="form-check-input"
                                             type="radio"
                                             id="sort-1"
-                                            value="gia-tang-dan"
+                                            value="asc"
                                             name="radio-sort"
                                         />
                                         <label
@@ -318,7 +318,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                             class="form-check-input"
                                             type="radio"
                                             id="sort-2"
-                                            value="gia-giam-dan"
+                                            value="desc"
                                             name="radio-sort"
                                         />
                                         <label
@@ -333,8 +333,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                             class="form-check-input"
                                             type="radio"
                                             id="sort-3"
-                                            value="gia-nothing"
+                                            value="nothing"
                                             name="radio-sort"
+                                            checked
                                         />
                                         <label
                                             class="form-check-label"
@@ -346,6 +347,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                 <div class="col-12">
                                     <button
                                         class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4"
+                                        id="btnFilter"
                                     >
                                         Lọc Sản Phẩm
                                     </button>
@@ -354,6 +356,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         </div>
                         <div class="col-12 col-md-8 text-center">
                             <div class="row g-4">
+                                <c:if test="${totalPages==0}">
+                                    <p>Không tìm thấy sản phẩm</p>
+                                </c:if>
                                 <c:forEach var="product" items="${productList}">
                                     <div class="col-md-6 col-lg-4">
                                         <div
@@ -393,7 +398,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                     "
                                                 >
                                                     <a
-                                                        href="/product/${product.id}"
+                                                        href="/product/detail/${product.id}"
                                                     >
                                                         ${product.name}
                                                     </a>
@@ -452,48 +457,50 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                         </div>
                                     </div>
                                 </c:forEach>
-                                <nav aria-label="Page navigation example">
-                                    <ul
-                                        class="pagination d-flex justify-content-center mt-5"
-                                    >
-                                        <li class="page-item">
-                                            <a
-                                                class="${1 eq currentPage ? 'disabled page-link' : 'page-link'}"
-                                                href="/products?page=${currentPage - 1}"
-                                                aria-label="Previous"
-                                            >
-                                                <span aria-hidden="true">
-                                                    &laquo;
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <c:forEach
-                                            begin="1"
-                                            end="${totalPages}"
-                                            varStatus="loop"
+                                <c:if test="${totalPages>0}">
+                                    <nav aria-label="Page navigation example">
+                                        <ul
+                                            class="pagination d-flex justify-content-center mt-5"
                                         >
                                             <li class="page-item">
                                                 <a
-                                                    class="${loop.index eq currentPage ? 'active page-link' : 'page-link'}"
-                                                    href="/products?page=${loop.index}"
+                                                    class="${1 eq currentPage ? 'disabled page-link' : 'page-link'}"
+                                                    href="/products?page=${currentPage - 1}${queryString}"
+                                                    aria-label="Previous"
                                                 >
-                                                    ${loop.index }
+                                                    <span aria-hidden="true">
+                                                        &laquo;
+                                                    </span>
                                                 </a>
                                             </li>
-                                        </c:forEach>
-                                        <li class="page-item">
-                                            <a
-                                                class="${totalPages eq currentPage ? 'disabled page-link' : 'page-link'}"
-                                                href="/products?page=${currentPage + 1}"
-                                                aria-label="Next"
+                                            <c:forEach
+                                                begin="1"
+                                                end="${totalPages}"
+                                                varStatus="loop"
                                             >
-                                                <span aria-hidden="true"
-                                                    >&raquo;</span
+                                                <li class="page-item">
+                                                    <a
+                                                        class="${loop.index eq currentPage ? 'active page-link' : 'page-link'}"
+                                                        href="/products?page=${loop.index}${queryString}"
+                                                    >
+                                                        ${loop.index }
+                                                    </a>
+                                                </li>
+                                            </c:forEach>
+                                            <li class="page-item">
+                                                <a
+                                                    class="${totalPages eq currentPage ? 'disabled page-link' : 'page-link'}"
+                                                    href="/products?page=${currentPage + 1}${queryString}"
+                                                    aria-label="Next"
                                                 >
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                                    <span aria-hidden="true"
+                                                        >&raquo;</span
+                                                    >
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </c:if>
                             </div>
                         </div>
                     </div>

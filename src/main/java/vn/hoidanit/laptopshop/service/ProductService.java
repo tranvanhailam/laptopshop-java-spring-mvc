@@ -6,17 +6,21 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpSession;
 import vn.hoidanit.laptopshop.domain.Cart;
 import vn.hoidanit.laptopshop.domain.CartDetail;
 import vn.hoidanit.laptopshop.domain.Product;
+import vn.hoidanit.laptopshop.domain.Product_;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.domain.dto.order.ReceiverInfoDTO;
+import vn.hoidanit.laptopshop.domain.dto.product.ProductCriteriaDTO;
 import vn.hoidanit.laptopshop.repository.CartRepository;
 import vn.hoidanit.laptopshop.repository.ProductRepository;
 import vn.hoidanit.laptopshop.repository.UserRepository;
+import vn.hoidanit.laptopshop.service.specification.ProductSpecifications;
 
 @Service
 public class ProductService {
@@ -49,6 +53,128 @@ public class ProductService {
         return this.productRepository.findAll(pageable);
     }
 
+    public Page<Product> getAllProductsWithSpecification(ProductCriteriaDTO productCriteriaDTO, Pageable pageable) {
+        Specification<Product> combinedSpecification = Specification.where(null);
+
+        if (productCriteriaDTO.getFactory() != null && productCriteriaDTO.getTarget() == null) {
+            return this.productRepository.findAll(pageable);
+        }
+
+        if (productCriteriaDTO.getTarget() != null && productCriteriaDTO.getTarget().isPresent()) {
+            Specification<Product> currentSpecification = ProductSpecifications
+                    .targetListEqual(productCriteriaDTO.getTarget().get());
+            combinedSpecification = combinedSpecification.and(currentSpecification);
+        }
+
+        if (productCriteriaDTO.getPrice() != null && productCriteriaDTO.getPrice().isPresent()) {
+            Specification<Product> currentSpecification = buildPriceCombinedSpecification(
+                    productCriteriaDTO.getPrice().get(), pageable);
+            combinedSpecification = combinedSpecification.and(currentSpecification);
+        }
+
+        return this.productRepository.findAll(combinedSpecification, pageable);
+    }
+
+    // public Page<Product> getAllProductsWithSpecification(double minPrice,
+    // Pageable pageable) {
+    // return
+    // this.productRepository.findAll(ProductSpecifications.priceGreaterThanOrEqualTo(minPrice),
+    // pageable);
+    // }
+
+    // public Page<Product> getAllProductsWithSpecification(double maxPrice,
+    // Pageable pageable) {
+    // return
+    // this.productRepository.findAll(ProductSpecifications.priceLessThanOrEqualTo(maxPrice),
+    // pageable);
+    // }
+
+    // public Page<Product> getAllProductsWithSpecification(String factory, Pageable
+    // pageable) {
+    // return
+    // this.productRepository.findAll(ProductSpecifications.factoryEqual(factory),
+    // pageable);
+    // }
+
+    // public Page<Product> getAllProductsWithSpecification(List<String>
+    // factoryList, Pageable pageable) {
+    // return
+    // this.productRepository.findAll(ProductSpecifications.factoryListEqual(factoryList),
+    // pageable);
+    // }
+
+    // public Page<Product> getAllProductsWithSpecification(String price, Pageable
+    // page) {
+    // // eg: price 10-toi-15-trieu
+    // if (price.equals("10000000-15000000")) {
+    // double minPrice = 10000000;
+    // double maxPrice = 15000000;
+    // return this.productRepository.findAll(
+    // ProductSpecifications.priceGreaterThanOrEqualAndLessThanOrEqualTo(minPrice,
+    // maxPrice),
+    // page);
+
+    // } else if (price.equals("15000000-20000000")) {
+    // double minPrice = 15000000;
+    // double maxPrice = 20000000;
+    // return this.productRepository.findAll(ProductSpecifications
+    // .priceGreaterThanOrEqualAndLessThanOrEqualTo(minPrice, maxPrice),
+    // page);
+    // } else if (price.equals("20000000-30000000")) {
+    // double minPrice = 20000000;
+    // double maxPrice = 30000000;
+    // return this.productRepository.findAll(ProductSpecifications
+    // .priceGreaterThanOrEqualAndLessThanOrEqualTo(minPrice, maxPrice),
+    // page);
+    // } else
+    // return this.productRepository.findAll(page);
+    // }
+
+    public Specification<Product> buildPriceCombinedSpecification(List<String> priceList,
+            Pageable page) {
+        Specification<Product> combinedSpecification = Specification.where(null);
+        // int count = 0;
+
+        for (String price : priceList) {
+            double minPrice = 0;
+            double maxPrice = 0;
+
+            switch (price) {
+                case "under-10000000":
+                    minPrice = 0;
+                    maxPrice = 10000000;
+                    // count++;
+                    break;
+                case "10000000-15000000":
+                    minPrice = 10000000;
+                    maxPrice = 15000000;
+                    // count++;
+                    break;
+                case "15000000-20000000":
+                    minPrice = 15000000;
+                    maxPrice = 20000000;
+                    // count++;
+                    break;
+                case "over-20000000":
+                    minPrice = 20000000;
+                    maxPrice = 200000000;
+                    // count++;
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (minPrice != 0 || maxPrice != 0) {
+                Specification<Product> rangSpecification = ProductSpecifications
+                        .priceMultipleGreaterThanOrEqualAndLessThanOrEqualTo(minPrice, maxPrice);
+                combinedSpecification = combinedSpecification.or(rangSpecification);
+            }
+        }
+
+        return combinedSpecification;
+    }
+
     public List<Product> getAllProducts() {
         return this.productRepository.findAll();
     }
@@ -57,7 +183,7 @@ public class ProductService {
         this.productRepository.deleteById(id);
     }
 
-    public void handleAddProductToCart(String email, long id,int quantity, HttpSession session) {
+    public void handleAddProductToCart(String email, long id, int quantity, HttpSession session) {
         User user = this.userService.getFirstUserByEmail(email);
         if (user != null) {
             Cart cart = this.cartService.getCartByUser(user);
@@ -78,7 +204,7 @@ public class ProductService {
                     this.cartDetailService.handleSaveCartDetail(cartDetail);
 
                 } else {// when product not in cart
-                    //new CartDetail
+                    // new CartDetail
                     CartDetail newCartDetail = new CartDetail();
                     newCartDetail.setCart(cart);
                     newCartDetail.setProduct(product);
@@ -86,7 +212,7 @@ public class ProductService {
                     newCartDetail.setQuantity(quantity);
                     this.cartDetailService.handleSaveCartDetail(newCartDetail);
 
-                    //Update Cart
+                    // Update Cart
                     int sum = cart.getSum() + 1;
                     cart.setSum(sum);
                     this.cartService.handleSaveCart(cart);
@@ -96,6 +222,8 @@ public class ProductService {
         }
     }
 
-
+    public Specification<Product> queryByName(String name) {
+        return (root, query, builder) -> builder.like(root.get(Product_.NAME), "%" + name + "%");
+    }
 
 }

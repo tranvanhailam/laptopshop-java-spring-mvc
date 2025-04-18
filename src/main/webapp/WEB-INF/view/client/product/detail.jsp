@@ -44,6 +44,15 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
         <!-- Template Stylesheet -->
         <link href="/client/css/style.css" rel="stylesheet" />
+
+        <meta name="_csrf" content="${_csrf.token}" />
+        <!-- default header name is X-CSRF-TOKEN -->
+        <meta name="_csrf_header" content="${_csrf.headerName}" />
+
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+            rel="stylesheet"
+        />
     </head>
 
     <body>
@@ -94,11 +103,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                     </a>
                                 </div>
                             </div>
-                            <form
-                                action="/product/add-product-to-cart-from-view-detail/${product.id}"
-                                method="post"
-                                class="col-lg-6"
-                            >
+                            <div class="col-lg-6">
                                 <input
                                     type="hidden"
                                     name="${_csrf.parameterName}"
@@ -127,38 +132,55 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                 >
                                     <div class="input-group-btn">
                                         <button
-                                            type="button"
                                             class="btn btn-sm btn-minus rounded-circle bg-light border"
                                         >
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
                                     <input
-                                        name="quantity"
                                         type="text"
                                         class="form-control form-control-sm text-center border-0"
                                         value="1"
+                                        data-cart-detail-index="0"
                                     />
                                     <div class="input-group-btn">
                                         <button
-                                            type="button"
                                             class="btn btn-sm btn-plus rounded-circle bg-light border"
                                         >
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
                                 </div>
+                                <input
+                                    type="hidden"
+                                    name="${_csrf.parameterName}"
+                                    value="${_csrf.token}"
+                                />
+                                <input
+                                    class="form-control d-none"
+                                    type="text"
+                                    value="${product.id}"
+                                    name="id"
+                                />
+
+                                <input
+                                    class="form-control d-none"
+                                    type="text"
+                                    name="quantity"
+                                    id="cartDetails0.quantity"
+                                    value="1"
+                                />
                                 <button
-                                    type="submit"
-                                    href="#"
-                                    class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"
+                                    data-product-id="${product.id}"
+                                    class="btnAddToCartDetail btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"
                                 >
                                     <i
                                         class="fa fa-shopping-bag me-2 text-primary"
                                     ></i>
-                                    + Giỏ hàng
+                                    Add to cart
                                 </button>
-                            </form>
+                            </div>
+
                             <div class="col-lg-12">
                                 <nav>
                                     <div class="nav nav-tabs mb-3">
@@ -555,5 +577,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
         <!-- Template Javascript -->
         <script src="/client/js/main.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
     </body>
 </html>

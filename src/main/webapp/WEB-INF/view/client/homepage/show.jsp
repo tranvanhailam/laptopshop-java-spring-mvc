@@ -43,6 +43,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
         <!-- Template Stylesheet -->
         <link href="/client/css/style.css" rel="stylesheet" />
+
+        <meta name="_csrf" content="${_csrf.token}" />
+        <!-- default header name is X-CSRF-TOKEN -->
+        <meta name="_csrf_header" content="${_csrf.headerName}" />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+            rel="stylesheet"
+        />
     </head>
     <body>
         <!-- Spinner Start -->
@@ -180,7 +188,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                                 />
                                                                 đ
                                                             </p>
-                                                            <form
+                                                            <!-- <form
                                                                 action="/product/add-product-to-cart/${product.id}"
                                                                 method="post"
                                                             >
@@ -188,15 +196,16 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                                                     type="hidden"
                                                                     name="${_csrf.parameterName}"
                                                                     value="${_csrf.token}"
-                                                                />
-                                                                <button
-                                                                    href="#"
-                                                                    class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"
-                                                                >
-                                                                    Thêm vào giỏ
-                                                                    hàng
-                                                                </button>
-                                                            </form>
+                                                                /> -->
+                                                            <button
+                                                                data-product-id="${product.id}"
+                                                                href="#"
+                                                                class="btnAddToCartHomepage mx-auto btn border border-secondary rounded-pill px-3 text-primary"
+                                                            >
+                                                                Thêm vào giỏ
+                                                                hàng
+                                                            </button>
+                                                            <!-- </form> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -233,5 +242,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
         <!-- Template Javascript -->
         <script src="/client/js/main.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
     </body>
 </html>

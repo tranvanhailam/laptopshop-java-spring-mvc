@@ -59,7 +59,7 @@ public class CartController {
             HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         String email = (String) session.getAttribute("email");
-        this.productService.handleAddProductToCart(email, id, 1, session);
+        this.productService.handleAddProductToCart(email, session, id, 1);
         return "redirect:/";
     }
 
@@ -69,7 +69,7 @@ public class CartController {
             HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         String email = (String) session.getAttribute("email");
-        this.productService.handleAddProductToCart(email, id, quantity, session);
+        this.productService.handleAddProductToCart(email, session, id, quantity);
         return "redirect:/product/detail/" + id;
     }
 

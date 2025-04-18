@@ -183,7 +183,7 @@ public class ProductService {
         this.productRepository.deleteById(id);
     }
 
-    public void handleAddProductToCart(String email, long id, int quantity, HttpSession session) {
+    public void handleAddProductToCart(String email, HttpSession session, long id, long quantity) {
         User user = this.userService.getFirstUserByEmail(email);
         if (user != null) {
             Cart cart = this.cartService.getCartByUser(user);

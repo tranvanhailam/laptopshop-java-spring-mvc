@@ -7,7 +7,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Sản Phẩm - Laptopshop</title>
+        <title>Danh sách sản phẩm - Laptopshop</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <meta content="" name="keywords" />
         <meta content="" name="description" />

@@ -14,7 +14,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
         />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Login - SB Admin</title>
+        <title>Đăng nhập - Laptopshop</title>
         <link href="/css/styles.css" rel="stylesheet" />
         <script
             src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"

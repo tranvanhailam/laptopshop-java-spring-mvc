@@ -72,7 +72,7 @@ uri="http://www.springframework.org/tags/form" %>
                                 class="breadcrumb-item active"
                                 aria-current="page"
                             >
-                                <a href="/cart">Chi Tiết Giỏ Hàng</a>
+                                <a href="/cart">Giỏ Hàng</a>
                                 
                             </li>
                         </ol>

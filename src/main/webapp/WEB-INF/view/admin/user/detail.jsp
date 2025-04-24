@@ -10,9 +10,7 @@ uri="http://www.springframework.org/tags/form" %>
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
-        <meta name="author" content="Hỏi Dân IT" />
-        <title>Detail User - Hỏi Dân IT</title>
+        <title>Detail User - Laptopshop</title>
         <link href="/css/styles.css" rel="stylesheet" />
 
         <script

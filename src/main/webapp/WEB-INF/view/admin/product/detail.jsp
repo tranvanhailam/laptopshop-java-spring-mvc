@@ -12,9 +12,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
-        <meta name="author" content="Hỏi Dân IT" />
-        <title>Detail Product - Hỏi Dân IT</title>
+        <title>Detail Product - Laptopshop</title>
         <link href="/css/styles.css" rel="stylesheet" />
 
         <script

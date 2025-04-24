@@ -71,7 +71,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                                 class="breadcrumb-item active"
                                 aria-current="page"
                             >
-                                <a href="/order-history"> Lịch sử mua hàng</a>
+                                <a href="/order-history">Lịch sử mua hàng</a>
                             </li>
                         </ol>
                     </nav>
